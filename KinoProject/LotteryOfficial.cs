@@ -19,9 +19,9 @@ namespace KinoProject
 
         public LotteryOfficial()
         {
-            Draw == new List<int>();
-            Ticket = = new List<int>();
-            WonNumbers = new List<int>();
+            Draw = new List<Draw>();
+            Ticket = new List<Ticket>();
+            WonNumbers = new List<WonNumbers>();
         }
 
         public static void Results(Draw draw, Ticket ticket)
