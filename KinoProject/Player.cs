@@ -8,11 +8,8 @@ namespace KinoProject
 {
     class Player
     {
-        public int ID { get; set; }
-        public List<int> NumbersToPlay { get; set; }
-        bool Bonus { get; set; }
-        public List<Player> PlayersList { get; set; }
-
+        public int ID;
+        public string Name;
 
 
         public Player(int id)

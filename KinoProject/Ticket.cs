@@ -8,10 +8,13 @@ namespace KinoProject
 {
     class Ticket
     {
-        public int ID { get; set; }
-        public List<Player> Players { get; set; }
-        public List<int> NumbersToPlay { get; set; }
-        public Player player { get; set; }
+        public int DrawTimes;
+        public Player Player;
+        public List<int> NumbersPlayedL;
+        public bool Bonus;
+        public int WinsCategory;
+        public Draw Draw;
+
 
         //προσωρινά μόνο
         public Ticket()

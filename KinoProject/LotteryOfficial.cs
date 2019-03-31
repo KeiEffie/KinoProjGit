@@ -11,24 +11,16 @@ namespace KinoProject
         //the lottery event - entering players into a lottery, 
         //interface  - how to enter player details and ticket details etc.
         //drawing a lottery
-        public Draw Draw { get; set; }
-                // List<int> WinnerList
-                // int BonusNumber 
-        //public Player player { get; set; }
-                // List<Player> PlayersList
-                // List<int> NumbersToPlay
-       
-        public Ticket Ticket { get; set; }
-                // int ID  
-                // List<Player> Players 
-                // List<int> NumbersToPlay 
+        public List<Draw> DrawL;
+        public List<Ticket> TicketL;
+        public List<Player> PlayersL;
         public List<int> WonNumbers { get; set; }
 
 
         public LotteryOfficial()
         {
-            Draw = new Draw();
-            Ticket = new Ticket();
+            Draw == new List<int>();
+            Ticket = = new List<int>();
             WonNumbers = new List<int>();
         }
 

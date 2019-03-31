@@ -8,8 +8,12 @@ namespace KinoProject
 {
     class Draw
     {
-        public static List<int> DrawIDsList = new List<int>();
-        //public static List<int> DrawIDsList { get; set; }
+        public static List<int> DrawIDsList = new List<int>();  //***************  STATIC PROPERTY **************
+
+        public List<int> WinnerList;
+        public int BonusNumber { get; set; }
+        public double DrawAmount { get; set; }
+
         private int id;
         public int ID
         {
@@ -23,23 +27,7 @@ namespace KinoProject
             }
         }
 
-        public List<int> WinnerList { get; set; }
-        //public int BonusNumber { get; set; }
-        private int bonusNumber;
-        public int BonusNumber
-        {
 
-            get
-            {
-                return bonusNumber;
-            }
-            set
-            {
-                bonusNumber = value;
-            }
-        }
-
-        public double DrawAmount { get; set; }
 
         //προσωρινά μόνο
         public Draw()
@@ -68,20 +56,26 @@ namespace KinoProject
                 finalString += charLettersArray[random.Next(charLettersArray.Length)];
             }
             int finalID = int.Parse(finalString);
-            Console.WriteLine("Draw ID:  {0}", finalString);
+// ΑΝ ΥΠΑΡΧΕΙ ΤΟ Id της Κλήρωσης ξανατρέξε την ίδια μέθοδο, αλλιώς πρόσθεσέ το στην λίστα με τα IDs και επέστρεψε το UNIQUE ID
             if (!DrawIDsList.Contains(finalID))
             {
                 DrawIDsList.Add(finalID);
             }
+            else
+            {
+                UniqueLRID();
+            }
+
+            Console.WriteLine("Draw ID:  {0}", finalString);
             return finalID;
         }
 
-        public List<int> DrawNumbers()
+        public List<int> DrawNumbers()          // ΚΛΗΡΩΣΕ 12 ΜΟΝΑΔΙΚΟΥΣ ΑΡΙΘΜΟΥΣ, ο 12ος είναι και KINO BONUS
         {
             List<int> WinnerList = new List<int>();
-            var numberToDraw = new Random();
+            Random numberToDraw = new Random();
             int counter = 1;
-            //bonusNumber = 0;
+            BonusNumber = 0;
 
             int randomDraw = numberToDraw.Next(1, 80);
 
@@ -100,12 +94,11 @@ namespace KinoProject
             }
             return WinnerList;
         }
+
         public int GetBonus()
         {
-
-            bonusNumber = WinnerList.Last();
-           
-            return bonusNumber;
+            BonusNumber = WinnerList.Last();
+            return BonusNumber;
         }
 
 
@@ -118,15 +111,10 @@ namespace KinoProject
                 Console.Write($"   {i},");
             }
             Console.WriteLine();
-            Console.WriteLine($"KINO BONUS:   {bonusNumber}");
+            Console.WriteLine($"KINO BONUS:   {BonusNumber}");
         }
 
-        //public static void Results()
-        //{
-
-
-        //}
-
+      
     }
 }
 
