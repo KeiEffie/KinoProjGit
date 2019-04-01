@@ -72,7 +72,7 @@ namespace KinoProject
 
         public List<int> DrawNumbers()          // ΚΛΗΡΩΣΕ 12 ΜΟΝΑΔΙΚΟΥΣ ΑΡΙΘΜΟΥΣ, ο 12ος είναι και KINO BONUS
         {
-            List<int> WinnerList = new List<int>();
+            WinnerList = new List<int>();
             Random numberToDraw = new Random();
             int counter = 1;
             BonusNumber = 0;

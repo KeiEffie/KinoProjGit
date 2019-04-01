@@ -20,6 +20,10 @@ namespace KinoProject
             PlayersList = new List<Player>();
         }
 
+        public Player()
+        {
+        }
+
         public override string ToString()
         {
             return "Player ID:" + ID;

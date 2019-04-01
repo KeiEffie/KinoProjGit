@@ -14,39 +14,63 @@ namespace KinoProject
         public List<Draw> DrawL;
         public List<Ticket> TicketL;
         public List<Player> PlayersL;
-        public List<int> WonNumbers { get; set; }
+        public List<int> WonList;
 
 
         public Lottery()
         {
-            DrawL == new List<Draw>();
+            DrawL = new List<Draw>();
             TicketL = new List<Ticket>();
-            PlayersL=new List<Player>();
-            WonNumbers = new List<WonNumbers>();
+            PlayersL = new List<Player>();
+            WonList = new List<int>();
         }
 
-        public static void Results(List<Draw> drawL, List<Ticket> ticketL)
+
+        public void Results(List<Draw> drawL, List<Ticket> ticketL)
         {
             foreach (Ticket t in ticketL)
             {
-            }
-            Console.WriteLine($"For Ticket Number: {ticket.ID}");            
-            for (int i=0; i < ticket.player.NumbersToPlay.Capacity; i++)
-            {
-                foreach (int j in ticket.player.NumbersToPlay)
-                {
-                    draw.WinnerList.Contains(j);
-
+                Console.WriteLine($"For Ticket Number: {t.ID}");
+                foreach (Draw d in drawL)
+                {                                                                           //var intersect = array1.Intersect(array2);
+                    var WonList = d.WinnerList.Intersect(t.NumbersPlayedL);                     //foreach(int j in t.NumbersPlayedL)
+                  
                 }
-                
             }
-            
+            // return WonList;
+        }
+
+       public void CountMatches()
+        {
+            int timesWon = WonList.Count;
+            switch (timesWon)
+            {
+                case 1:
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        public void PrintResults()
+        {
+            Console.WriteLine();
+            Console.WriteLine($"The Winning Numbers Found:");
+
+            foreach (int i in WonList)
+            {
+                Console.Write($"   {i},");
+
+            }
+            Console.WriteLine();
 
         }
-        public static void Statistics(Draw draw, Ticket ticket)
+
+        public static void Statistics(List<Draw> drawL, List<Ticket> ticketL)
         {
 
         }
+        
            
 
         
