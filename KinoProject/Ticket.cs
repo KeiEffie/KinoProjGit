@@ -8,23 +8,23 @@ namespace KinoProject
 {
     class Ticket
     {
-        enum WinCategory
-        {
-            SixPlus = 1,
-            Six = 2,
-            FivePlus = 4,
-            Five = 8,
-            FourPlus = 16,
-            Four = 32,
-            ThreePlus = 64,
-            Three = 128,
-            TwoPlus = 256,
-            Two = 512,
-            OnePlus = 1024,
-            One = 2048,
-            Zero = 4096
+        //enum WinCategory
+        //{
+        //    SixPlus = 1,
+        //    Six = 2,
+        //    FivePlus = 4,
+        //    Five = 8,
+        //    FourPlus = 16,
+        //    Four = 32,
+        //    ThreePlus = 64,
+        //    Three = 128,
+        //    TwoPlus = 256,
+        //    Two = 512,
+        //    OnePlus = 1024,
+        //    One = 2048,
+        //    Zero = 4096
             
-        }
+        //}
         ////get value
         //int day = (int)Days.TuesDay;
         ////cast to enum
@@ -51,7 +51,7 @@ namespace KinoProject
         private int drawTimes = 0;
         public int DrawTimes { get { return drawTimes; } set { drawTimes = value; }}
 
-
+        public int bonusNumber = 0;
         public bool Bonus;
         private int winsCategory;
         public int WinsCategory { get { return winsCategory; } set { winsCategory = (int)WinCategory.Zero; } }          //enum
@@ -72,8 +72,78 @@ namespace KinoProject
             Bonus = false;
             WinsCategory = WinsCategory;
         }
-                    
-        
+
+
+        //Διαβάζει τα νούμερα που παίζει ο Player και τα βάζει  σε μία λίστα 
+        public void CreateSixNumbersList()
+        {
+            int kinoNumber = 0;
+            int count = 1;
+            var NumbersPlayedL = new List<int>();
+            
+            bool anas = false;
+            Random r = new Random();
+
+            PlayersList.Add(new Player(r.Next(501, 1501)));
+
+            Console.WriteLine("Choose 6 Numbers from the list above from 1 to 80");
+            while (count <= 6)
+            {
+                Console.Write($"Enter Next Number, No{count}: ");
+                try { kinoNumber = int.Parse(Console.ReadLine()); } catch { Console.Write("You didn't enter a Number. Please try again! "); Console.WriteLine("Please enter a valid Number:"); }
+
+
+                if (NumbersPlayedL.Contains(kinoNumber)) //check whether the number is already in List
+                {
+                    Console.Write($"You have given this number before. Please try again!");
+                }
+                else if (kinoNumber > 80 || kinoNumber < 1)
+                {
+                    Console.Write($"You have given a number out of range of 1-80. Please try again!");
+                }
+                else
+                {
+                    NumbersPlayedL.Add(kinoNumber); // Add User Input to Six Numers List
+                    count++;
+                }
+            }
+            while (!anas)
+            {
+                string ansBonus = "";
+                if (count == 7)
+                {
+                    Console.Write($"Will you play a Bonus number? (Y/N): ");
+                    try { ansBonus = Console.ReadLine(); } catch { Console.Write("You didn't enter a Y or N. Please try again! "); Console.WriteLine("Will you play a Bonus number? (Y/N): "); }
+                    if (ansBonus.ToUpper() == "Y")
+                    {
+                        bonusNumber = kinoNumber;
+                        Bonus = anas = true;
+                        Console.WriteLine($"Your Bonus Number is: {bonusNumber}");
+                    }
+                }
+            }
+            PrintSixNumbersList(NumbersPlayedL);
+        }//end CreateSixNumbersList
+
+
+        public void PrintSixNumbersList(List<int> alist)
+        {
+            NumbersToPlay = alist;
+            Console.WriteLine("Player has chosen the following Numbers:");
+            foreach (int i in NumbersToPlay)                       //εκτύπωση της λίστας των 6 αριθμών
+            {
+                Console.Write($"   {i},");
+            }
+            //    Console.WriteLine();
+            //    Console.WriteLine($"KINO BONUS:   {bonusNumber}");
+        }
+
+
+
+
+
+
+
 
         private int UniqueID() //another way of implementing an auto ID containing numbers 
                                  //but numbers from 0-9 

@@ -40,15 +40,42 @@ namespace KinoProject
             // return WonList;
         }
 
-       public void CountMatches()
+        public void CountMatches()
         {
             int timesWon = WonList.Count;
-            switch (timesWon)
+            foreach (Ticket t in TicketL)
             {
-                case 1:
-                    break;
-                default:
-                    break;
+                Console.WriteLine($"For Ticket Number: {t.ID}");
+                foreach (Draw d in DrawL)
+                {
+                    switch (timesWon)
+                    {
+                        case 0:
+                            t.WinsCategory = (int)WinCategory.Zero;
+                            break;
+                        case 1:
+                            t.WinsCategory = (int)WinCategory.One;
+                            break;
+                        case 2:
+                            t.WinsCategory = (int)WinCategory.Two;
+                            break;
+                        case 3:
+                            break;
+                            t.WinsCategory = (int)WinCategory.Three;
+                            break;
+                        case 4:
+                            t.WinsCategory = (int)WinCategory.Four;
+                            break;
+                        case 5:
+                            t.WinsCategory = (int)WinCategory.Five;
+                            break;
+                        case 6:
+                            t.WinsCategory = (int)WinCategory.Six;
+                            break;
+                        default:
+                            break;
+                    }
+                }
             }
         }
 
