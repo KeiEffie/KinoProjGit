@@ -11,5 +11,10 @@ namespace KinoProject
         public Draw Draw;
         public int resultArray;
 
+
+
+
+
+
     }
 }

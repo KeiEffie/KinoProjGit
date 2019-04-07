@@ -25,11 +25,15 @@ namespace KinoProject
     }
     class Program
     {
+
         static void Main(string[] args)
         {
-            bool ans = true;
-            Player player = new Player(1);
-            
+
+        bool ans = true;
+        Player player = new Player(1);
+        Lottery lottery = new Lottery();
+            List<int> PlayersList = new List<int>();
+            List<int> TicketsList = new List<int>();
 
             do
             {
@@ -79,7 +83,9 @@ namespace KinoProject
                         draw.PrintWinnerList();
                         break;
                     case 4:
-
+                        lottery.Results();
+                        lottery.CountMatches();
+                        lottery.PrintMatches();
                         break;
                     case 5:
                         break;
@@ -132,95 +138,6 @@ namespace KinoProject
                 }
             }
 
-            /////***************************************************************************************************************************************
-            ////print 80numbers list for the user as a table in console
-            ////foreach (int i in list80Kino)
-            ////  {
-            /////***************************************************************************************************************************************
-            //for (int j = 1; j <= 80; j++)
-            //{
-            //    if (j < 10)
-            //    {
-            //        Console.Write("  {0}  ", j);
-            //    }
-            //    else if (j % 10 == 0)
-            //    {
-            //        Console.Write("  {0}  ", j);
-            //        Console.WriteLine();
-            //    }
-            //    else
-            //    {
-            //        Console.Write("  {0}  ", j);
-            //    }
-            //}
-            /////***************************************************************************************************************************************
-
-            ////Πόσοι παίκτες θα παίξουν ΚΙΝΟ?
-            //Console.WriteLine("Enter players to play");
-            //    int playersToPlay = int.Parse(Console.ReadLine());
-
-            //    //initialiaze την λίστα των players
-            //    List<Player> somePlayers = new List<Player>();
-
-            //    //initialize την λίστα των 6 Numbers, των Players, του Dictionary
-            //    List<int> playerSixNumbersList = new List<int>();
-            //    List<Player> newPlayersList = new List<Player>();
-
-            //    Dictionary<List<Player>, List<int>> PlayerSixNumbersPair = new Dictionary<List<Player>, List<int>>();
-
-
-            //    // για όσους Players εβαλε ο χρήστης, τόσες φορές δημιουργησε μία λίστα για 6 Numbers για κάθε Player
-            //    for (int i = 0; i < playersToPlay; i++)
-            //    {
-            //        playerSixNumbersList = Player.CreateSixNumbersList();
-
-            //        //γέμισμα της λίστας των Players
-            //        somePlayers = Player.GetPlayers();
-
-            //        //εκτύπωση της λίστας των 6
-            //        foreach (int num in playerSixNumbersList)
-            //        {
-            //            Console.WriteLine(num);
-            //        }
-            //        //εκτύπωση της λίστας των Players
-            //        foreach (Player player in somePlayers)
-            //        {
-            //            Console.WriteLine($"Player ID: {player.ID}");
-            //            Console.WriteLine($"Player ToString : {player.ToString()}");
-            //        }
-
-            //        //// The Add method throws an exception if the new key is 
-            //        //// already in the dictionary.
-            //        //try
-            //        //{
-            //        //    openWith.Add("txt", "winword.exe");
-            //        //}
-            //        //catch (ArgumentException)
-            //        //{
-            //        //    Console.WriteLine("An element with Key = \"txt\" already exists.");
-            //        //}
-
-
-
-            //        //γέμισμα του Dictionary με PlayersList και NumbersList
-            //        PlayerSixNumbersPair.Add(somePlayers, playerSixNumbersList);
-            //    }
-
-            //    //Print each pair of Key-Value from Dictionary PlayerSixNumbersPair
-            //    foreach (KeyValuePair<List<Player>, List<int>> pl in PlayerSixNumbersPair)
-            //    {
-            //        Console.WriteLine();
-            //        for (int j = 0; j < pl.Key.Count; j++)
-            //        {
-            //            Console.WriteLine($"Pair here: {pl.Key[j]}");
-            //            for (int i = 0; i < pl.Value.Count; i++)
-            //            {
-
-            //                Console.WriteLine($"Pair Value: {pl.Value[i]}");
-            //            }
-            //        }
-            //    }
-
-        }
-    }
-}
+        }//end Main
+    }//end Program
+}//end Namespace

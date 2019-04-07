@@ -34,8 +34,6 @@ namespace KinoProject
         ////Method 2:
         //Days day = (Days)Enum.ToObject(typeof(Days), 3);
 
-        public static List<int> TicketL = new List<int>();           // ***************** STATIC PROPERTY ****************
-
         private int id;
         public int ID
         { get
@@ -53,20 +51,21 @@ namespace KinoProject
 
         public int bonusNumber = 0;
         public bool Bonus;
+        public List<int> PartakeDrawList;
+        //list keeping the draw IDs that the specific ticket partook
         private int winsCategory;
         public int WinsCategory { get { return winsCategory; } set { winsCategory = (int)WinCategory.Zero; } }          //enum
 
         //προσωρινά μόνο
         public Ticket()
         {
-
         }
 
         public Ticket(int id)
         {
             ID = id;
             Player = new Player();
-            Draw = new Draw();
+            PartakeDrawList = new List<int>();
             NumbersPlayedL = new List<int>();
             DrawTimes = drawTimes;
             Bonus = false;
@@ -83,8 +82,6 @@ namespace KinoProject
             
             bool anas = false;
             Random r = new Random();
-
-            PlayersList.Add(new Player(r.Next(501, 1501)));
 
             Console.WriteLine("Choose 6 Numbers from the list above from 1 to 80");
             while (count <= 6)
@@ -126,17 +123,34 @@ namespace KinoProject
         }//end CreateSixNumbersList
 
 
-        public void PrintSixNumbersList(List<int> alist)
+        public void PrintSixNumbersList(List<int> nList)
         {
-            NumbersToPlay = alist;
+            Console.WriteLine();
             Console.WriteLine("Player has chosen the following Numbers:");
-            foreach (int i in NumbersToPlay)                       //εκτύπωση της λίστας των 6 αριθμών
+            foreach (int n in nList)
             {
-                Console.Write($"   {i},");
+                Console.Write($"   {n},");
             }
-            //    Console.WriteLine();
-            //    Console.WriteLine($"KINO BONUS:   {bonusNumber}");
+            Console.WriteLine("Player has chosen the following Numbers:");
+
+            Console.WriteLine();
+            Console.WriteLine($"KINO BONUS:   {bonusNumber}");
         }
+
+
+        //public void PrintSixNumbersList(List<Ticket> tList)
+        //{
+        //    Console.WriteLine();
+        //    Console.WriteLine("Player has chosen the following Numbers:");
+        //    foreach (Ticket t in tList)
+        //    {
+        //        Console.Write($"   {t.NumbersPlayedL},");
+        //    }
+        //    Console.WriteLine("Player has chosen the following Numbers:");
+
+        //    //    Console.WriteLine();
+        //    //    Console.WriteLine($"KINO BONUS:   {bonusNumber}");
+        //}
 
 
 

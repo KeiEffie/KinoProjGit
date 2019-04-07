@@ -8,16 +8,15 @@ namespace KinoProject
 {
     class Player
     {
+       
         public int ID;
-        public string Name;
+        public string Name { get; set; }
 
 
         public Player(int id)
         {
             ID = id;
-            NumbersToPlay = new List<int>();
-            Bonus = false;
-            PlayersList = new List<Player>();
+            Name = Name;
         }
 
         public Player()
@@ -40,7 +39,8 @@ namespace KinoProject
             bool anas = false;
             Random r = new Random();
 
-            PlayersList.Add(new Player(r.Next(501,1501)));
+            var numID = new Player(r.Next(501, 1501));
+            PlayerL.Add(numID.ID);
 
             Console.WriteLine("Choose 6 Numbers from the list above from 1 to 80");
             while (count <= 6)
@@ -145,9 +145,9 @@ namespace KinoProject
                 
                 NumbersToPlay = CreateRandomSixNumbersList();           //γέμισμα της λίστας των 6 Numbers για κάθε Player
 
-                PlayersList = CreateRandomPlayer();                     //γέμισμα της λίστας των Players
+                PlayerL = CreateRandomPlayer();                     //γέμισμα της λίστας των Players
 
-                PlayerSixNumbersPair.Add(PlayersList, NumbersToPlay);   //γέμισμα του Dictionary με PlayersList και NumbersList
+                PlayerSixNumbersPair.Add(PlayerL, NumbersToPlay);   //γέμισμα του Dictionary με PlayersList και NumbersList
             }
 
             return PlayerSixNumbersPair;

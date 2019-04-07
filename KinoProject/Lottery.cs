@@ -15,6 +15,9 @@ namespace KinoProject
         public List<Ticket> TicketL;
         public List<Player> PlayersL;
         public List<int> WonList;
+      
+
+
 
 
         public Lottery()
@@ -26,12 +29,12 @@ namespace KinoProject
         }
 
 
-        public void Results(List<Draw> drawL, List<Ticket> ticketL)
+        public void Results()
         {
-            foreach (Ticket t in ticketL)
+            foreach (Ticket t in TicketL)
             {
                 Console.WriteLine($"For Ticket Number: {t.ID}");
-                foreach (Draw d in drawL)
+                foreach (Draw d in DrawL)
                 {                                                                           //var intersect = array1.Intersect(array2);
                     var WonList = d.WinnerList.Intersect(t.NumbersPlayedL);                     //foreach(int j in t.NumbersPlayedL)
                   
@@ -39,16 +42,49 @@ namespace KinoProject
             }
             // return WonList;
         }
-
-        public void CountMatches()
+        public void PrintResults()
         {
-            int timesWon = WonList.Count;
+            Console.WriteLine();
+            Console.WriteLine($"The Winning Numbers Found:");
+
+            foreach (int i in WonList)
+            {
+                Console.Write($"   {i},");
+
+            }
+            Console.WriteLine();
+        }
+
+
+        public void PrintMatches()
+        {
             foreach (Ticket t in TicketL)
             {
                 Console.WriteLine($"For Ticket Number: {t.ID}");
-                foreach (Draw d in DrawL)
+                foreach (int i in t.NumbersPlayedL)
                 {
-                    switch (timesWon)
+                    Console.WriteLine();
+                    Console.WriteLine("Played Numbers");
+                    Console.Write($"   {i},");
+                }
+                foreach (int j in WonList)
+                {
+                    Console.WriteLine();
+                    Console.WriteLine("Won Numbers");
+                    Console.Write($"   {j},");
+                }
+            }
+        }
+
+        public void CountMatches()
+        {
+            int numsWon = WonList.Count;
+                
+            foreach (Draw d in DrawL)
+            {
+                foreach (Ticket t in TicketL)
+                {
+                    switch (numsWon)
                     {
                         case 0:
                             t.WinsCategory = (int)WinCategory.Zero;
@@ -79,19 +115,7 @@ namespace KinoProject
             }
         }
 
-        public void PrintResults()
-        {
-            Console.WriteLine();
-            Console.WriteLine($"The Winning Numbers Found:");
-
-            foreach (int i in WonList)
-            {
-                Console.Write($"   {i},");
-
-            }
-            Console.WriteLine();
-
-        }
+        
 
         public static void Statistics(List<Draw> drawL, List<Ticket> ticketL)
         {
