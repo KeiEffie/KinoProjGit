@@ -40,7 +40,7 @@ namespace KinoProject
             Random r = new Random();
 
             var numID = new Player(r.Next(501, 1501));
-            PlayerL.Add(numID.ID);
+            //PlayerL.Add(numID.ID);
 
             Console.WriteLine("Choose 6 Numbers from the list above from 1 to 80");
             while (count <= 6)

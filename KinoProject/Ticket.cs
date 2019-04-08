@@ -64,7 +64,7 @@ namespace KinoProject
         public Ticket(int id)
         {
             ID = id;
-            Player = new Player();
+            Player = new Player();          
             PartakeDrawList = new List<int>();
             NumbersPlayedL = new List<int>();
             DrawTimes = drawTimes;

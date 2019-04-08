@@ -30,21 +30,20 @@ namespace KinoProject
             return finalID;
         }
 
-        public static CheckUNQ(int finalID)
-        {
-            // ΑΝ ΥΠΑΡΧΕΙ ΤΟ Id της Κλήρωσης ξανατρέξε την ίδια μέθοδο, αλλιώς πρόσθεσέ το στην λίστα με τα IDs και επέστρεψε το UNIQUE ID
-            if (!DrawIDsList.Contains(finalID))
-            {
-                DrawIDsList.Add(finalID);
-            }
-            else
-            {
-                UniqueLRID();
-            }
+        //public static int CheckUNQ(int finalID)
+        //{
+        //    // ΑΝ ΥΠΑΡΧΕΙ ΤΟ Id της Κλήρωσης ξανατρέξε την ίδια μέθοδο, αλλιώς πρόσθεσέ το στην λίστα με τα IDs και επέστρεψε το UNIQUE ID
+        //    if (!DrawIDsList.Contains(finalID))
+        //    {
+        //        DrawIDsList.Add(finalID);              //o elegxos tha prepei na elegxei prota to eidos tis listas kai meta na kanei auta to fi
+        //    }
+        //    else
+        //    {
+        //        UniqueLRID();
+        //    }
 
-            
-        }
-
-
+        //    return finalID;
     }
+
+
 }
