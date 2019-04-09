@@ -9,7 +9,7 @@ namespace KinoProject
     class Results
     {
         public Draw Draw;
-        public int resultArray;
+        public int[] resultArray;
 
     }
 }
