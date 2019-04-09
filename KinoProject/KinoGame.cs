@@ -111,31 +111,28 @@ namespace KinoProject
 
         }//end CreateSixNumbersList
 
-        private int UniqueLRID() //another way of implementing an auto ID containing numbers 
-                                 //but numbers from 0-9 
+        
+        //Δημιουργία ενός array με 6 νούμερα ----  άλλος ένας τρόπος
+        public Array RandomSix()
         {
+            int[] kinoNums = new int[6];
+            Random randm = new Random();
+            int num = 0;
 
-            char[] charLettersArray = "0123456789".ToCharArray();
-            Random random = new Random();
-            string finalString = "";
-
-            for (int i = 0; i < 5; i++)  // max = 99999
+            for (int i = 0; i < kinoNums.Length; i++)
             {
-                finalString += charLettersArray[random.Next(charLettersArray.Length)];
+                num = randm.Next(1, 80);                        //generate random number
+                                                                //check to see whether number has already been picked
+                while (kinoNums.Contains(num) == true)		   //if it has try another random, until it hasnt been picked
+                {
+                    num = randm.Next(1, 80);
+                }
+                kinoNums[i] = num;			                    //hasnt been picked, so added to the array
             }
-            int finalID = int.Parse(finalString);
-            // ΑΝ ΥΠΑΡΧΕΙ ΤΟ Id του Ticket ξανατρέξε την ίδια μέθοδο, αλλιώς πρόσθεσέ το στην λίστα με τα IDs και επέστρεψε το UNIQUE ID
-            if (!DrawL.Contains(finalID))
-            {
-                DrawL.Add(finalID);
-            }
-            else
-            {
-                UniqueLRID();
-            }
-
-            Console.WriteLine("Draw ID:  {0}", finalString);
-            return finalID;
+            return kinoNums;
         }
+
+
+
     }
 }

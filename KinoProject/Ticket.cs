@@ -42,32 +42,12 @@ namespace KinoProject
 
         }
 
-        private int UniqueLRID() //another way of implementing an auto ID containing numbers 
-                                 //but numbers from 0-9 
+        public override string ToString()
         {
-
-            char[] charLettersArray = "0123456789".ToCharArray();
-            Random random = new Random();
-            string finalString = "";
-
-            for (int i = 0; i < 5; i++)  // max = 99999
-            {
-                finalString += charLettersArray[random.Next(charLettersArray.Length)];
-            }
-            int finalID = int.Parse(finalString);
-            // ΑΝ ΥΠΑΡΧΕΙ ΤΟ Id του Ticket ξανατρέξε την ίδια μέθοδο, αλλιώς πρόσθεσέ το στην λίστα με τα IDs και επέστρεψε το UNIQUE ID
-            if (!DrawIDsList.Contains(finalID))
-            {
-                DrawIDsList.Add(finalID);
-            }
-            else
-            {
-                UniqueLRID();
-            }
-
-            Console.WriteLine("Draw ID:  {0}", finalString);
-            return finalID;
+            return "Player ID:" + ID + " " + Player + " " + PrintNums;
         }
+
+       
 
 
 

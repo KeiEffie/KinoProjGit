@@ -9,10 +9,9 @@ namespace KinoProject
     class Player
     {
         public int ID;
-        private string name;
-        public string Name { get; private set; }
+        public string Name { get; set; }
 
-        public Player(int id)
+        public Player(int id, string name)
         {
             ID = id;
             Name = name;
@@ -20,7 +19,7 @@ namespace KinoProject
 
         public override string ToString()
         {
-            return "Player ID:" + ID;
+            return "Player ID:" + ID + " " + Name;
         }
 
 
