@@ -8,15 +8,15 @@ namespace KinoProject
 {
     class KinoGame
     {
-        public Ticket Ticket;
-        public List<int> KinoNumbers { get; set; }
+        public List<int> KinoNumbersList { get; set; }
         public bool Bonus { get; set; }
+        public int noKino;
+        public bool isManual = true;
 
 
-
-        public KinoGame(int noKino)
+        public KinoGame()
         {
-            KinoNumbers = new List<int>(noKino);
+            KinoNumbersList = new List<int>(noKino);
             Bonus = GetBonus();
         }
 
@@ -27,13 +27,11 @@ namespace KinoProject
 
 
         //Manual or Random create Kino Numbers List
-        public bool ManualRandomChoice()
+        public ManualRandomChoice()
         {
-            bool isManual = true;
-            
-            Console.WriteLine("Would you like to choose 6 numbers");
+            Console.WriteLine("Would you like to choose Kino numbers");
             Console.WriteLine("Or let the Kino System choose 6 Numbers from 1 to 80  Randomly for you");
-            Console.Write("To input Randomly Press 0 \t");  Console.WriteLine("To input Manually Press 1");
+            Console.Write("To input Randomly Press 0 \t"); Console.WriteLine("To input Manually Press 1");
 
             try
             {
@@ -47,9 +45,9 @@ namespace KinoProject
 
             Console.WriteLine($"Your Choice is: {isManual}, ie {Convert.ToInt32(isManual)}");
 
-            return isManual;
-        }
-       
+            //return isManual;
+        }//end Manual OR Random
+
         // Get Bonus
         public bool GetBonus()
         {
@@ -57,43 +55,60 @@ namespace KinoProject
             while (!anas)
             {
                 string ansBonus = "";
-               
-                    Console.Write($"Will you play a Bonus number? (Y/N): ");
-                    try { ansBonus = Console.ReadLine(); } catch { Console.Write("You didn't enter a Y or N. Please try again! "); Console.WriteLine("Will you play a Bonus number? (Y/N): "); }
-                    if (ansBonus.ToUpper() == "Y")
-                    {
-                        //bonusNumber = kinoNumber;  // actually is the last number of x-length list
-                        Bonus = anas = true;
-                    }
+
+                Console.Write($"Will you play a Bonus number? (Y/N): ");
+                try { ansBonus = Console.ReadLine(); } catch { Console.Write("You didn't enter a Y or N. Please try again! "); Console.WriteLine("Will you play a Bonus number? (Y/N): "); }
+                if (ansBonus.ToUpper() == "Y")
+                {
+                    //bonusNumber = kinoNumber;  // actually is the last number of x-length list
+                    Bonus = anas = true;
+                }
             }
             return Bonus;
+        }//end GetBonus
+
+
+        //auto increment
+
+        public int GetnoKINO()
+        {
+            Console.WriteLine("How many Kino Numbers would you like to play? (min 3 - max 15)");
+            try { noKino = int.Parse(Console.ReadLine()); } catch { Console.Write("You didn't enter a Number. Please try again! "); Console.WriteLine("Please enter a valid Number (min 3 - max 15):"); }
+            return noKino;
         }
 
+        public List<int> SetKINOList(int noKino)
+        {
+            ManualRandomChoice();
+            noKino = GetnoKINO();
+            List<int> KinoNumbersList = new List<int>(noKino);
+            if (isManual)
+            {
+                KinoNumbersList = CreateManualKINONumbersList();
+            }
+            else
+            {
+                KinoNumbersList = CreateRandomKINONumbersList();
+            }
+        }
 
-      //auto increment
-      
-
-        //Διαβάζει τα νούμερα που παίζει ο Player και τα βάζει  σε μία λίστα 
-        public void CreateManualSixNumbersList()
+        // Δημιουργία μιας λίστας με KINO numbers - Manually 
+        public List<int> CreateManualKINONumbersList()
         {
             int kinoNumber = 0;
             int count = 1;
-            
-            //bool ans = false;
-            Random r = new Random();
 
-            //PlayersL.Add(new Player(r.Next(501, 1501)));
-
-            Console.WriteLine("Choose 6 Numbers from the list above from 1 to 80");
+            Console.WriteLine($"Choose {noKino} Numbers from the list above from 1 to 80");
 
 
-            while (count <= 6)
+            while (count <= noKino)
             {
                 Console.Write($"Enter Next Number, No{count}: ");
                 try { kinoNumber = int.Parse(Console.ReadLine()); } catch { Console.Write("You didn't enter a Number. Please try again! "); Console.WriteLine("Please enter a valid Number:"); }
 
 
-                if (KinoNumbers.Contains(kinoNumber)) //check whether the number is already in List
+                if (KinoNumbersList.Contains(kinoNumber))
+                //check whether the number is already in List
                 {
                     Console.Write($"You have given this number before. Please try again!");
                 }
@@ -103,35 +118,34 @@ namespace KinoProject
                 }
                 else
                 {
-                    KinoNumbers.Add(kinoNumber); // Add User Input to Six Numers List
+                    KinoNumbersList.Add(kinoNumber); // Add User Input to Six Numers List
                     count++;
                 }
             }
-         
+            return KinoNumbersList;
 
-        }//end CreateSixNumbersList
+        }//end Manual
 
-        
-        //Δημιουργία ενός array με 6 νούμερα ----  άλλος ένας τρόπος
-        public Array RandomSix()
+        // Δημιουργία μιας λίστας με KINO numbers - Randomly
+        public List<int> CreateRandomKINONumbersList()
         {
-            int[] kinoNums = new int[6];
-            Random randm = new Random();
-            int num = 0;
+            Random random = new Random();
+            int idNumber = (random.Next(1, 80));
 
-            for (int i = 0; i < kinoNums.Length; i++)
+            for (int j = 0; j < KinoNumbersList.Capacity; j++)
             {
-                num = randm.Next(1, 80);                        //generate random number
-                                                                //check to see whether number has already been picked
-                while (kinoNums.Contains(num) == true)		   //if it has try another random, until it hasnt been picked
+                if (!KinoNumbersList.Contains(idNumber))
                 {
-                    num = randm.Next(1, 80);
+                    KinoNumbersList.Add(idNumber);
                 }
-                kinoNums[i] = num;			                    //hasnt been picked, so added to the array
+                else
+                {
+                    j--;
+                }
+                idNumber = (random.Next(1, 80));
             }
-            return kinoNums;
-        }
-
+            return KinoNumbersList;
+        }//end Random
 
 
     }

@@ -8,9 +8,8 @@ namespace KinoProject
 {
     class Draw
     {
-        public static List<int> DrawIDsList = new List<int>();  //***************  STATIC PROPERTY **************
 
-        public List<int> WinnerList;
+        public List<int> DrawNumbersList;
         public int BonusNumber { get; set; }
         public double DrawAmount { get; set; }
 
@@ -23,7 +22,7 @@ namespace KinoProject
             }
             set
             {
-                id = UniqueLRID();
+                id = value;
             }
         }
 
@@ -39,41 +38,29 @@ namespace KinoProject
         public Draw(double drawAmount)
         {
             ID = id;
-            WinnerList = DrawNumbers();
+            DrawNumbersList = DrawNumbers();
             BonusNumber = GetBonus();
             DrawAmount = drawAmount;
         }
-        private int UniqueLRID() //another way of implementing an auto ID containing numbers 
-                                    //but numbers from 0-9 
+        public override string ToString()
         {
-            
-            char[] charLettersArray = "0123456789".ToCharArray();
-            Random random = new Random();
-            string finalString = "";
 
-            for (int i = 0; i < 5; i++)  // max = 99999
-            {
-                finalString += charLettersArray[random.Next(charLettersArray.Length)];
-            }
-            int finalID = int.Parse(finalString);
-// ΑΝ ΥΠΑΡΧΕΙ ΤΟ Id της Κλήρωσης ξανατρέξε την ίδια μέθοδο, αλλιώς πρόσθεσέ το στην λίστα με τα IDs και επέστρεψε το UNIQUE ID
-            if (!DrawIDsList.Contains(finalID))
-            {
-                DrawIDsList.Add(finalID);
-            }
-            else
-            {
-                UniqueLRID();
-            }
-
-            Console.WriteLine("Draw ID:  {0}", finalString);
-            return finalID;
+            return "Draw ID:" + ID + " BonusNumber: " + BonusNumber + " Draw Amount: " + DrawAmount + " Winning KINO Numbers are:" + string.Join(",", DrawNumbersList.ToArray());
         }
 
-        public List<int> DrawNumbers()          // ΚΛΗΡΩΣΕ 12 ΜΟΝΑΔΙΚΟΥΣ ΑΡΙΘΜΟΥΣ, ο 12ος είναι και KINO BONUS
+        public string ListToString()
         {
-            List<int> WinnerList = new List<int>();
+            string DrawNumListChar = string.Join(", ", DrawNumbersList.ToArray());
+
+            return DrawNumListChar;
+        }
+
+        // ΚΛΗΡΩΣΕ 12 ΜΟΝΑΔΙΚΟΥΣ ΑΡΙΘΜΟΥΣ, ο 12ος είναι και KINO BONUS     
+        public List<int> DrawNumbers()
+        {
+            List<int> DrawNumList = new List<int>();
             Random numberToDraw = new Random();
+
             int counter = 1;
             BonusNumber = 0;
 
@@ -81,32 +68,34 @@ namespace KinoProject
 
             while (counter <= 12)
             {
-                if (!WinnerList.Contains(randomDraw))             //Αν δεν υπάρχει στην λίστα πρόσθεσέ το
-                {
-                    WinnerList.Add(randomDraw);
+                if (!DrawNumList.Contains(randomDraw)
+  ///Αν δεν υπάρχει στην λίστα πρόσθεσέ το
+              {
+                    DrawNumList.Add(randomDraw);
                 }
                 else
                 {
-                    counter--;          
+                    counter--;
                 }
                 randomDraw = numberToDraw.Next(1, 80);
                 counter++;
             }
-            return WinnerList;
+            return DrawNumList;
         }
 
         public int GetBonus()
         {
-            BonusNumber = WinnerList.Last();
+            BonusNumber = DrawNumbersList.Last();
             return BonusNumber;
         }
 
 
-        public void PrintWinnerList()
+        public void DrawNumbersList()
         {
             Console.WriteLine($"The Amount of this Draw is {DrawAmount} ");
             Console.WriteLine($"The Winning Numbers of Draw {ID} are the following:");
-            foreach (int i in WinnerList)                       //εκτύπωση της λίστας των 12 αριθμών
+            foreach (int i in DrawNumbersList)
+            //εκτύπωση της λίστας των 12 αριθμών
             {
                 Console.Write($"   {i},");
             }
@@ -114,7 +103,7 @@ namespace KinoProject
             Console.WriteLine($"KINO BONUS:   {BonusNumber}");
         }
 
-      
+
     }
 }
 

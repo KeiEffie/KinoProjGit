@@ -14,26 +14,55 @@ namespace KinoProject
         public List<Draw> DrawL;
         public List<Ticket> TicketL;
         public List<Player> PlayersL;
-        //public List<int> WonNumbers { get; set; }
-
+        public List<int> WonNumbers { get; set; }
+        public int xId = 0;
 
         public Lottery()
         {
             DrawL = new List<Draw>();
             TicketL = new List<Ticket>();
             PlayersL = new List<Player>();
-            //WonNumbers = new List<int>();
+            WonNumbers = new List<int>();
         }
 
-
-
+        public int icrement(x)
+        {
+            xId += 1;
+        }
 
         // kalo to kinogame create numbers kai vazo prin ayto:
         //PlayersL.Add(new Player(r.Next(501, 1501)));
+        public List<Player> GetPlayersList(int noTickets)
+        {
+            if (noTickets <= noPlayers)
+            {
+                for (i = 1; i <= noTickets; i++)
+                {
+                    Player player = new Player();
+                    PlayersL.Add(player);
+                }
+            }
+            return PlayersL;
+        }
+
+        public void GetPlayer()
+        {
+            foreach (Player p in PlayersL)
+            {
+
+            }
+        }
+
+        public PlayKinoGame()
+        {
+            var kinoGame = new KinoGame();
+            int noKino = kinoGame.GetnoKino();
+            //public Ticket(int id, bool bonus, List<int> numbersPlayedL, Player player)
+            var ticket = new Ticket(icrement(xId), kinoGame.GetBonus, SetKINOList(noKino), GetPlayer())
+        }
 
         public void PrintSixNumbersList(List<int> alist)
         {
-            
             Console.WriteLine("Player has chosen the following Numbers:");
             foreach (int i in alist)                       //εκτύπωση της λίστας των 6 αριθμών
             {
@@ -45,7 +74,7 @@ namespace KinoProject
         public void PrintRandomPlayersList()
         {
             Console.WriteLine("Players:");
-            foreach (Player pl in PlayersL)                   //εκτύπωση της λίστας των Players
+            foreach (Player pl in PlayersList)                   //εκτύπωση της λίστας των Players
             {
                 Console.WriteLine($"Player ID: {pl.ID}");
             }
@@ -94,9 +123,9 @@ namespace KinoProject
 
                 NumbersToPlay = CreateRandomSixNumbersList();           //γέμισμα της λίστας των 6 Numbers για κάθε Player
 
-                PlayersL = CreateRandomPlayer();                     //γέμισμα της λίστας των Players
+                PlayersList = CreateRandomPlayer();                     //γέμισμα της λίστας των Players
 
-                PlayerSixNumbersPair.Add(PlayersL, NumbersToPlay);   //γέμισμα του Dictionary με PlayersList και NumbersList
+                PlayerSixNumbersPair.Add(PlayersList, NumbersToPlay);   //γέμισμα του Dictionary με PlayersList και NumbersList
             }
 
             return PlayerSixNumbersPair;
@@ -121,34 +150,62 @@ namespace KinoProject
         }//end 
 
 
+        // Δημιουργία μιας λίστας με 6 numbers
+        public List<int> CreateRandomSixNumbersList()
+        {
+            Random random = new Random();
+            List<int> newSixPlayerNumbers = new List<int>(6);
+            int idNumber = (random.Next(1, 80));
 
+            for (int j = 0; j < newSixPlayerNumbers.Capacity; j++)
+            {
+                if (!newSixPlayerNumbers.Contains(idNumber))
+                {
+                    newSixPlayerNumbers.Add(idNumber);
+                }
+                else
+                {
+                    j--;
+                }
+                idNumber = (random.Next(1, 80));
+            }
+            return newSixPlayerNumbers;
+        }//end 
 
+        //Δημιουργία ενός array με 6 νούμερα ----  άλλος ένας τρόπος
+        public Array RandomSix()
+        {
+            int[] kinoNums = new int[6];
+            Random randm = new Random();
+            int num = 0;
+
+            for (int i = 0; i < kinoNums.Length; i++)
+            {
+                num = randm.Next(1, 80);                        //generate random number
+                                                                //check to see whether number has already been picked
+                while (kinoNums.Contains(num) == true)
+                //if it has try another random, until it hasnt been picked
+                {
+                    num = randm.Next(1, 80);
+                }
+                kinoNums[i] = num;
+                //hasnt been picked, so added to the array
+            }
+            return kinoNums;
+        }
 
 
         public static void Results(Draw draw, Ticket ticket)
         {
-            Console.WriteLine($"For Ticket Number: {ticket.}");            
-            for (int i=0; i < ticket.NumbersPlayedL.Capacity; i++)
+            Console.WriteLine($"For Ticket Number: {ticket.}");
+            for (int i = 0; i < ticket.NumbersPlayedL.Capacity; i++)
             {
                 foreach (int j in ticket.NumbersPlayedL)
                 {
                     draw.WinnerList.Contains(j);
 
                 }
-
-                
             }
-            
-
-        }
-        
-        
-        
-        
-        // auto increment
-        public int Increment(int x)
-        {
-            return x+=1;
         }
 
     }

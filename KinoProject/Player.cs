@@ -9,9 +9,10 @@ namespace KinoProject
     class Player
     {
         public int ID;
+        private string name;
         public string Name { get; set; }
 
-        public Player(int id, string name)
+        public Player(int id)
         {
             ID = id;
             Name = name;

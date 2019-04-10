@@ -12,21 +12,11 @@ namespace KinoProject
         public Player Player;
         public List<int> NumbersPlayedL;
         public bool Bonus;
-        public int WinsCategory;
-        
+        public int WinersCategory;
+
 
         private int id;
-        public int ID
-        {
-            get
-            {
-                return id;
-            }
-            set
-            {
-                id = UniqueLRID();
-            }
-        }
+        public int ID { get; set; }
 
         //προσωρινά μόνο
         public Ticket()
@@ -34,20 +24,21 @@ namespace KinoProject
 
         }
 
-        public Ticket(Player player, List<int> numbersPlayedL)
+        public Ticket(int id, bool bonus, List<int> numbersPlayedL, Player player)
         {
             ID = id;
             Player = player;
             NumbersPlayedL = numbersPlayedL;
+            Bonus = bonus;
 
         }
 
-        public override string ToString()
+        public List<int> GetNumbersPlayedL()
         {
-            return "Player ID:" + ID + " " + Player + " " + PrintNums;
+            var kinoGame = new KinoGame();
+            return NumbersPlayedL;
         }
 
-       
 
 
 

@@ -8,7 +8,52 @@ namespace KinoProject
 {
     class SampleCode
     {
+        public void SwitchMenu()
+        {
+            switch (choice)
+            {
+                case 1:
+                    CreateNumbersTable();
+                    lottery.
+                    player.CreateSixNumbersList();
+                    break;
+                case 2:
+                    var newDict = player.CreateRandomPlayersDict();
+                    player.PrintRandomPlayersWithNumbersDict(newDict);
+                    break;
+                case 3:
+                    double drawAmount = 0;
+                    bool test = false;
+                    do
+                    {
+                        Console.WriteLine("Enter the Total Draw Amount to be shared: ");
+                        try { drawAmount = double.Parse(Console.ReadLine()); }
+                        catch
+                        {
+                            test = true;
+                            Console.WriteLine("Enter a valid double for total Draw Amount");
+                        }
 
+                    } while (test);
+                    Draw draw = new Draw(drawAmount);
+                    draw.PrintWinnerList();
+                    break;
+                case 4:
+                    lottery.Results();
+                    lottery.CountMatches();
+                    lottery.PrintMatches();
+                    break;
+                case 5:
+                    break;
+                case 6:
+                    Console.WriteLine("You chose to Exit Program");
+                    return;
+                case 7:
+                    break;
+                default:
+                    break;
+            }//end switch
+        }
         //Δημιουργία ενός array με 6 νούμερα ----  άλλος ένας τρόπος
         public Array RandomSix()
         {
@@ -64,9 +109,9 @@ namespace KinoProject
             }
             int finalID = int.Parse(finalString);
             // ΑΝ ΥΠΑΡΧΕΙ ΤΟ Id του Ticket ξανατρέξε την ίδια μέθοδο, αλλιώς πρόσθεσέ το στην λίστα με τα IDs και επέστρεψε το UNIQUE ID
-            if (!DrawL.Contains(finalID))
+            if (!DrawList.Contains(finalID))
             {
-                DrawL.Add(finalID);
+                DrawList.Add(finalID);
             }
             else
             {
