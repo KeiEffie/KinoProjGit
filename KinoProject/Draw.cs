@@ -9,7 +9,7 @@ namespace KinoProject
     class Draw
     {
 
-        public List<int> WinnerList { get; set; }
+        public List<int> WinnerList;
         public int BonusNumber { get; set; }
         public double DrawAmount { get; set; }
 

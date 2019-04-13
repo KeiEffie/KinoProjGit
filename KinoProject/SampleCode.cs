@@ -122,15 +122,22 @@ namespace KinoProject
             return finalID;
         }
 
-        public Dictionary<List<Player>, List<int>> CreateRandomPlayersDict()
+        public Dictionary<List<Player>, Ticket[]> CreatePlayersTicketsPair()
         {
 
-            int kinoPlayers = 0;        ////Πόσοι παίκτες θα παίξουν ΚΙΝΟ?
+            ////για όσους Players εβαλε ο χρήστης, τόσες φορές σύνδεσε ένα array με τα Tickets που έπαιξαν
+            for (int i = 0; i < PlayersL.Count; i++)
+            {
+                playersTicketsPair.Add(PlayersL, GetTickets());   //γέμισμα του Dictionary με PlayersList και NumbersList
+            }
+            return playersTicketsPair;
+        }//end CreateRandomPlayers
 
-            Console.Write("Enter the number of players you want to play KINO: ");
-            try { kinoPlayers = int.Parse(Console.ReadLine()); }
-            catch { Console.Write("You didn't enter a Number. Please try again! "); Console.WriteLine("Please enter a valid Number:"); }
-
+        public List<List<Player>> SetPlayersNumbersPair()
+            {
+                var listLista = new List<List<Player>>();
+                return listLista;
+            }
 
             Dictionary<List<Player>, List<int>> PlayerSixNumbersPair = new Dictionary<List<Player>, List<int>>();
 
@@ -251,7 +258,11 @@ namespace KinoProject
         //        }
         //    }
         //}
-
+        public static List<int> GetResults(Draw draw, Ticket ticket)
+        {
+            List<int> resultList = ticket.NumbersPlayedL.Intersect(draw.WinnerList).ToList(); ;
+            return resultList;
+        }
 
     }
 }

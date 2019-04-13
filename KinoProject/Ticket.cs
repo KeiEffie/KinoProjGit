@@ -22,14 +22,18 @@ namespace KinoProject
         //  set {kino = value;}
         //}
 
-        
-
         public Ticket(int id, bool bonus, int noKinos, Player player)
         {
             ID = id;
             Player = player;
             NumbersPlayedL = new KinoGame(noKinos).SetKINOList(noKinos);
             Bonus = kino.bonus;
+        }
+
+
+        public Ticket()
+        {
+
         }
 
 

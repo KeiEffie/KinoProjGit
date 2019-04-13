@@ -14,7 +14,7 @@ namespace KinoProject
         public List<Draw> DrawL;
         public List<Ticket> TicketL;
         public List<Player> PlayersL;
-       
+        Dictionary<List<Player>, Ticket[]> playersTicketsPair;
 
         public List<int> WonNumbers { get; set; }
         public int XxID { get; set; }
@@ -34,11 +34,12 @@ namespace KinoProject
 
         // kalo to kinogame create numbers kai vazo prin ayto:
         //PlayersL.Add(new Player(r.Next(501, 1501)));
+
         public List<Player> GetPlayersList(int noTickets)
         {
                 while(noTickets !=0)
                 {
-                    Player player = new Player(Increment(XxID));
+                    Player player = new Player(Increment(XxID), noTickets);
                     PlayersL.Add(player);
                     noTickets--;
                 }
@@ -47,7 +48,7 @@ namespace KinoProject
 
         public List<Ticket> GetTicket()
         {
-            var kino = new KinoGame(7);
+            var kino = new KinoGame();
             int noKinos = kino.GetnoKINO();
             foreach (Player p in PlayersL)
             {
@@ -57,7 +58,6 @@ namespace KinoProject
             return TicketL;
         }
 
-       
         public void PrintSixNumbersList(List<int> alist)
         {
             Console.WriteLine("Player has chosen the following Numbers:");
@@ -68,30 +68,48 @@ namespace KinoProject
             //    Console.WriteLine();
             //    Console.WriteLine($"KINO BONUS:   {bonusNumber}");
         }
-        public void PrintRandomPlayersList()
+
+        public void PrintPlayersList()
         {
             Console.WriteLine("Players:");
-            foreach (Player pl in PlayersL)                   //εκτύπωση της λίστας των Players
+            foreach (Player p in PlayersL)                   //εκτύπωση της λίστας των Players
             {
-                Console.WriteLine($"Player ID: {pl.ID}");
+                Console.WriteLine($"Player ID: {p.ID}");
             }
         }
 
-      
-        //αντί για dictionary λιστα μέσα σε λίστα
-        public List<List<Player>> SetPlayersNumbersPair()
+        public Ticket[] GetTickets(List<Player> PlayersL, int noTickets)
+       
+       // public Ticket[] GetTickets(List<Player> PlayersL, int noTickets)
         {
-            var listLista = new List<List<Player>>();
-            return listLista;
+            Ticket[] nATicket = new Ticket[noTickets-1];
+            int z = 0;
+            
+            foreach (Player p in PlayersL)                   
+            {
+                var kino = new KinoGame(); 
+                int noKinos = kino.GetnoKINO();
+
+                for (z=1; z <= p.noTickets; z++)
+                {
+                    var ticket = new Ticket(Increment(XxID), kino.GetBonus(), noKinos, p);
+                    nATicket[z] = ticket;
+                }
+            }
+            return nATicket;
         }
+
+        public Dictionary<List<Player>, Ticket[]> CreatePlayersTicketsPair(List<Player> PlayersL, int noTickets)
+        {
+            ////για όσους Players εβαλε ο χρήστης, τόσες φορές σύνδεσε ένα array με τα Tickets που έπαιξαν
+            for (int i = 0; i < PlayersL.Count; i++)
+            {
+                Ticket[] stg = GetTickets(PlayersL, 1);
+                playersTicketsPair.Add(PlayersL, stg);   //γέμισμα του Dictionary με PlayersList και NumbersList
+            }
+            return playersTicketsPair;
+        }//end CreatePlayersTicketsPair
+
        
-
-        
-
-       
-
-
-      
-
     }
 }

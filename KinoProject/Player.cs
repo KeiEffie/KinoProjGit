@@ -11,16 +11,18 @@ namespace KinoProject
         public int ID;
         private string name;
         public string Name { get; set; }
+        public int noTickets; 
 
-        public Player(int id)
+        public Player(int id, int noTickets)
         {
             ID = id;
             Name = name;
+            noTickets = 1;
         }
 
         public override string ToString()
         {
-            return "Player ID:" + ID + " " + Name;
+            return "Player ID:" + ID + " " + Name + "TicketsPlayed" + noTickets;
         }
 
 

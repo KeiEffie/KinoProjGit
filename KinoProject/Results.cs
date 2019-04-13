@@ -8,21 +8,38 @@ namespace KinoProject
 {
     class Results
     {
-//        public Draw Draw;
+        //public Draw Draw;
         public List<int> resultList;
+        public static int[] categoryWins;
 
 
-
-
-
-        public static List<int> GetResults(Draw draw, Ticket ticket)
+       public Results()
         {
-            List<int> resultArray = new List<int>();
-            Console.WriteLine($"For Ticket Number: {ticket.ID}");
-            var resultList = ticket.NumbersPlayedL.Intersect(draw.WinnerList);
-            return resultList;
+            resultList = new List<int>();
+            categoryWins = new int[12];
         }
 
 
-    }
+        
+        public static List<int> GetResultList(List<int> drawNoList, List<int> ticketNoList)
+        {
+            List<int> resultList = ticketNoList.Intersect(drawNoList).ToList(); ;
+            return resultList;
+        }
+
+        public static int[] GetCategory(List<int> resultList)
+        {
+            int total = resultList.Count;
+            switch (total)
+            {
+                case 1:
+
+                    break;
+                default:
+                    break;
+            }
+
+            return categoryWins;
+        }
+    }   
 }

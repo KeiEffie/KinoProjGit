@@ -20,10 +20,10 @@ namespace KinoProject
             bonus = GetBonus();
         }
 
-        //public KinoGame()
-        //{
+        public KinoGame()
+        {
 
-        //}
+        }
         ////createNumbersList
         ////Bonus
 
