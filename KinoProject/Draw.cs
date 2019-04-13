@@ -9,7 +9,7 @@ namespace KinoProject
     class Draw
     {
 
-        public List<int> DrawNumbersList;
+        public List<int> WinnerList { get; set; }
         public int BonusNumber { get; set; }
         public double DrawAmount { get; set; }
 
@@ -38,19 +38,19 @@ namespace KinoProject
         public Draw(double drawAmount)
         {
             ID = id;
-            DrawNumbersList = DrawNumbers();
+            WinnerList = DrawNumbers();
             BonusNumber = GetBonus();
             DrawAmount = drawAmount;
         }
         public override string ToString()
         {
 
-            return "Draw ID:" + ID + " BonusNumber: " + BonusNumber + " Draw Amount: " + DrawAmount + " Winning KINO Numbers are:" + string.Join(",", DrawNumbersList.ToArray());
+            return "Draw ID:" + ID + " BonusNumber: " + BonusNumber + " Draw Amount: " + DrawAmount + " Winning KINO Numbers are:" + string.Join(",", WinnerList.ToArray());
         }
 
         public string ListToString()
         {
-            string DrawNumListChar = string.Join(", ", DrawNumbersList.ToArray());
+            string DrawNumListChar = string.Join(", ", WinnerList.ToArray());
 
             return DrawNumListChar;
         }
@@ -68,7 +68,7 @@ namespace KinoProject
 
             while (counter <= 12)
             {
-                if (!DrawNumList.Contains(randomDraw)
+                if (!DrawNumList.Contains(randomDraw))
   ///Αν δεν υπάρχει στην λίστα πρόσθεσέ το
               {
                     DrawNumList.Add(randomDraw);
@@ -85,17 +85,18 @@ namespace KinoProject
 
         public int GetBonus()
         {
-            BonusNumber = DrawNumbersList.Last();
-            return BonusNumber;
+            // BonusNumber = WinnerList.Last();
+            //return BonusNumber;
+            // OR:
+            return WinnerList.Last();
         }
 
-
-        public void DrawNumbersList()
+        //εκτύπωση της λίστας των 12 αριθμών
+        public void PrintDrawNumbersList()
         {
             Console.WriteLine($"The Amount of this Draw is {DrawAmount} ");
             Console.WriteLine($"The Winning Numbers of Draw {ID} are the following:");
-            foreach (int i in DrawNumbersList)
-            //εκτύπωση της λίστας των 12 αριθμών
+            foreach (int i in WinnerList)
             {
                 Console.Write($"   {i},");
             }

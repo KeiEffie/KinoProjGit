@@ -13,8 +13,8 @@ namespace KinoProject
             switch (choice)
             {
                 case 1:
-                    CreateNumbersTable();
-                    lottery.
+                   
+                    lottery.CreateNumbersTable();
                     player.CreateSixNumbersList();
                     break;
                 case 2:
@@ -121,5 +121,137 @@ namespace KinoProject
             Console.WriteLine("Draw ID:  {0}", finalString);
             return finalID;
         }
+
+        public Dictionary<List<Player>, List<int>> CreateRandomPlayersDict()
+        {
+
+            int kinoPlayers = 0;        ////Πόσοι παίκτες θα παίξουν ΚΙΝΟ?
+
+            Console.Write("Enter the number of players you want to play KINO: ");
+            try { kinoPlayers = int.Parse(Console.ReadLine()); }
+            catch { Console.Write("You didn't enter a Number. Please try again! "); Console.WriteLine("Please enter a valid Number:"); }
+
+
+            Dictionary<List<Player>, List<int>> PlayerSixNumbersPair = new Dictionary<List<Player>, List<int>>();
+
+            ////για όσους Players εβαλε ο χρήστης, τόσες φορές δημιουργησε μία λίστα για 6 Numbers για κάθε Player
+            for (int i = 0; i < kinoPlayers; i++)
+            {
+
+                NumbersToPlay = CreateRandomSixNumbersList();           //γέμισμα της λίστας των 6 Numbers για κάθε Player
+
+                PlayersList = CreateRandomPlayer();                     //γέμισμα της λίστας των Players
+
+                PlayerSixNumbersPair.Add(PlayersList, NumbersToPlay);   //γέμισμα του Dictionary με PlayersList και NumbersList
+            }
+
+            return PlayerSixNumbersPair;
+        }//end CreateRandomPlayers
+         //εκτύπωση της λίστας των Players και της λίστας των 6 αριθμών
+        public void PrintRandomPlayersWithNumbersDict(Dictionary<List<Player>, List<int>> newDict)
+        {
+            //Print each pair of Key-Value from Dictionary PlayerSixNumbersPair
+            foreach (KeyValuePair<List<Player>, List<int>> pl in newDict)
+            {
+                Console.WriteLine();
+                for (int j = 0; j < pl.Key.Count; j++)
+                {
+                    Console.WriteLine($"Pair here: {pl.Key[j]}");
+
+                    for (int i = 0; i < pl.Value.Count; i++)
+                    {
+
+                        Console.WriteLine($"Pair Value: {pl.Value[i]}");
+                    }
+                }
+            }
+        }//end 
+
+        public PlayKinoGame()
+        {
+            var kino = new KinoGame();
+            int noKinos = kino.GetnoKINO();
+            foreach (Player p in PlayersL)
+            {
+                var ticket = new Ticket(Increment(XxID), kino.GetBonus(), noKinos, p);
+            }
+        }
+        // Δημιουργία μιας λίστας με Players
+        public List<Player> CreateRandomPlayer()
+        {
+            List<Player> newPlayersList = new List<Player>();
+            var random = new Random();
+            int idNumber = (random.Next(101, 750));
+
+            var newPlayer = new Player(idNumber);
+
+            if (!newPlayersList.Contains(newPlayer)) //check whether the number is already in List
+            {
+                /* newPlayer = new Player(idNumber);*/                // gemizo to ID,δημιουργία νέου Player
+                newPlayersList.Add(newPlayer);                      //προσθήκη  του νέου Player στην λίστα των Players
+            }
+            return newPlayersList;
+        }//end 
+
+        // Δημιουργία μιας λίστας με 6 numbers
+        public List<int> CreateRandomSixNumbersList()
+        {
+            Random random = new Random();
+            List<int> newSixPlayerNumbers = new List<int>(6);
+            int idNumber = (random.Next(1, 80));
+
+            for (int j = 0; j < newSixPlayerNumbers.Capacity; j++)
+            {
+                if (!newSixPlayerNumbers.Contains(idNumber))
+                {
+                    newSixPlayerNumbers.Add(idNumber);
+                }
+                else
+                {
+                    j--;
+                }
+                idNumber = (random.Next(1, 80));
+            }
+            return newSixPlayerNumbers;
+        }//end 
+
+        //Δημιουργία ενός array με 6 νούμερα ----  άλλος ένας τρόπος
+        public Array RandomSix()
+        {
+            int[] kinoNums = new int[6];
+            Random randm = new Random();
+            int num = 0;
+
+            for (int i = 0; i < kinoNums.Length; i++)
+            {
+                num = randm.Next(1, 80);                        //generate random number
+                                                                //check to see whether number has already been picked
+                while (kinoNums.Contains(num) == true)
+                //if it has try another random, until it hasnt been picked
+                {
+                    num = randm.Next(1, 80);
+                }
+                kinoNums[i] = num;
+                //hasnt been picked, so added to the array
+            }
+            return kinoNums;
+        }
+
+
+        //public static void GetResults(Draw draw, Ticket ticket)
+        //{
+        //    List<int> resultArray = new List<int>();
+        //    Console.WriteLine($"For Ticket Number: {ticket.ID}");
+        //    for (int i = 0; i < ticket.NumbersPlayedL.Count; i++)
+        //    {
+        //        foreach (int j in ticket.NumbersPlayedL)
+        //        {
+        //            if (draw.WinnerList.Contains(j))
+        //                resultArray.Add(j);
+        //        }
+        //    }
+        //}
+
+
     }
 }

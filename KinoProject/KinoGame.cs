@@ -9,25 +9,28 @@ namespace KinoProject
     class KinoGame
     {
         public List<int> KinoNumbersList { get; set; }
-        public bool Bonus { get; set; }
+        public bool bonus;
         public int noKino;
         public bool isManual = true;
 
 
-        public KinoGame()
+        public KinoGame(int noKino)
         {
             KinoNumbersList = new List<int>(noKino);
-            Bonus = GetBonus();
+            bonus = GetBonus();
         }
 
+        //public KinoGame()
+        //{
 
-        //createNumbersList
-        //Bonus
+        //}
+        ////createNumbersList
+        ////Bonus
 
 
 
         //Manual or Random create Kino Numbers List
-        public ManualRandomChoice()
+        public bool ManualRandomChoice()
         {
             Console.WriteLine("Would you like to choose Kino numbers");
             Console.WriteLine("Or let the Kino System choose 6 Numbers from 1 to 80  Randomly for you");
@@ -45,7 +48,7 @@ namespace KinoProject
 
             Console.WriteLine($"Your Choice is: {isManual}, ie {Convert.ToInt32(isManual)}");
 
-            //return isManual;
+            return isManual;
         }//end Manual OR Random
 
         // Get Bonus
@@ -61,15 +64,14 @@ namespace KinoProject
                 if (ansBonus.ToUpper() == "Y")
                 {
                     //bonusNumber = kinoNumber;  // actually is the last number of x-length list
-                    Bonus = anas = true;
+                    bonus = anas = true;
                 }
             }
-            return Bonus;
+            return bonus;
         }//end GetBonus
 
 
-        //auto increment
-
+       
         public int GetnoKINO()
         {
             Console.WriteLine("How many Kino Numbers would you like to play? (min 3 - max 15)");
@@ -90,6 +92,7 @@ namespace KinoProject
             {
                 KinoNumbersList = CreateRandomKINONumbersList();
             }
+            return KinoNumbersList;
         }
 
         // Δημιουργία μιας λίστας με KINO numbers - Manually 

@@ -8,39 +8,30 @@ namespace KinoProject
 {
     class Ticket
     {
-        //public int DrawTimes;
+        
+        public int ID { get; set; }
         public Player Player;
         public List<int> NumbersPlayedL;
         public bool Bonus;
-        public int WinersCategory;
+        //public int DrawTimes;
+        //public int WinersCategory;
 
+        public KinoGame kino;
+        //{
+        //  get {return kino;}
+        //  set {kino = value;}
+        //}
 
-        private int id;
-        public int ID { get; set; }
+        
 
-        //προσωρινά μόνο
-        public Ticket()
-        {
-
-        }
-
-        public Ticket(int id, bool bonus, List<int> numbersPlayedL, Player player)
+        public Ticket(int id, bool bonus, int noKinos, Player player)
         {
             ID = id;
             Player = player;
-            NumbersPlayedL = numbersPlayedL;
-            Bonus = bonus;
-
-        }
-
-        public List<int> GetNumbersPlayedL()
-        {
-            var kinoGame = new KinoGame();
-            return NumbersPlayedL;
+            NumbersPlayedL = new KinoGame(noKinos).SetKINOList(noKinos);
+            Bonus = kino.bonus;
         }
 
 
-
-
-    }
+    }//end class and namespace
 }
