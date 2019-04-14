@@ -139,20 +139,49 @@ namespace KinoProject
                 return listLista;
             }
 
-            Dictionary<List<Player>, List<int>> PlayerSixNumbersPair = new Dictionary<List<Player>, List<int>>();
+            Dictionary<List<Player>, List<int>> PlayerSixNumbersPair = new Dictionary<List<Player>, List<int>>()
+#pragma warning disable CS1026 // ) expected
+#pragma warning disable CS1519 // Invalid token 'for' in class, struct, or interface member declaration
+#pragma warning disable CS8124 // Tuple must contain at least two elements.
+#pragma warning disable CS1519 // Invalid token ';' in class, struct, or interface member declaration
+#pragma warning disable CS1519 // Invalid token '++' in class, struct, or interface member declaration
+#pragma warning disable CS1003 // Syntax error, '>' expected
+#pragma warning disable CS1519 // Invalid token '=' in class, struct, or interface member declaration
+;
 
             ////για όσους Players εβαλε ο χρήστης, τόσες φορές δημιουργησε μία λίστα για 6 Numbers για κάθε Player
             for (int i = 0; i < kinoPlayers; i++)
+#pragma warning restore CS1519 // Invalid token '=' in class, struct, or interface member declaration
+#pragma warning restore CS1003 // Syntax error, '>' expected
+#pragma warning restore CS1519 // Invalid token '++' in class, struct, or interface member declaration
+#pragma warning restore CS1519 // Invalid token ';' in class, struct, or interface member declaration
+#pragma warning restore CS8124 // Tuple must contain at least two elements.
+#pragma warning restore CS1519 // Invalid token 'for' in class, struct, or interface member declaration
+#pragma warning restore CS1026 // ) expected
             {
 
+#pragma warning disable CS1519 // Invalid token '=' in class, struct, or interface member declaration
                 NumbersToPlay = CreateRandomSixNumbersList();           //γέμισμα της λίστας των 6 Numbers για κάθε Player
+#pragma warning restore CS1519 // Invalid token '=' in class, struct, or interface member declaration
 
+#pragma warning disable CS1519 // Invalid token '=' in class, struct, or interface member declaration
                 PlayersList = CreateRandomPlayer();                     //γέμισμα της λίστας των Players
+#pragma warning restore CS1519 // Invalid token '=' in class, struct, or interface member declaration
 
+#pragma warning disable CS1519 // Invalid token '(' in class, struct, or interface member declaration
+#pragma warning disable CS1519 // Invalid token ';' in class, struct, or interface member declaration
                 PlayerSixNumbersPair.Add(PlayersList, NumbersToPlay);   //γέμισμα του Dictionary με PlayersList και NumbersList
+#pragma warning restore CS1519 // Invalid token ';' in class, struct, or interface member declaration
+#pragma warning restore CS1519 // Invalid token '(' in class, struct, or interface member declaration
+#pragma warning disable CS0116 // A namespace cannot directly contain members such as fields or methods
+#pragma warning disable CS1022 // Type or namespace definition, or end-of-file expected
+#pragma warning disable CS1022 // Type or namespace definition, or end-of-file expected
             }
 
             return PlayerSixNumbersPair;
+#pragma warning restore CS1022 // Type or namespace definition, or end-of-file expected
+#pragma warning restore CS1022 // Type or namespace definition, or end-of-file expected
+#pragma warning restore CS0116 // A namespace cannot directly contain members such as fields or methods
         }//end CreateRandomPlayers
          //εκτύπωση της λίστας των Players και της λίστας των 6 αριθμών
         public void PrintRandomPlayersWithNumbersDict(Dictionary<List<Player>, List<int>> newDict)
@@ -262,7 +291,11 @@ namespace KinoProject
         {
             List<int> resultList = ticket.NumbersPlayedL.Intersect(draw.WinnerList).ToList(); ;
             return resultList;
+#pragma warning disable CS1022 // Type or namespace definition, or end-of-file expected
+#pragma warning disable CS1022 // Type or namespace definition, or end-of-file expected
         }
 
     }
+#pragma warning restore CS1022 // Type or namespace definition, or end-of-file expected
 }
+#pragma warning restore CS1022 // Type or namespace definition, or end-of-file expected
