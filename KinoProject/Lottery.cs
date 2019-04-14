@@ -14,8 +14,9 @@ namespace KinoProject
         public List<Draw> DrawL;
         public List<Ticket> TicketL;
         public List<Player> PlayersL;
+        public List<Results> ResultsL;
         Dictionary<List<Player>, Ticket[]> playersTicketsPair;
-
+         
         public List<int> WonNumbers { get; set; }
         public int XxID { get; set; }
 
@@ -25,6 +26,7 @@ namespace KinoProject
             TicketL = new List<Ticket>();
             PlayersL = new List<Player>();
             WonNumbers = new List<int>();
+            ResultsL = new List<Results>();
         }
 
         public int Increment(int xID)
@@ -66,7 +68,7 @@ namespace KinoProject
                 Console.Write($"   {i},");
             }
             //    Console.WriteLine();
-            //    Console.WriteLine($"KINO BONUS:   {bonusNumber}");
+            //    Console.WriteLine($"KI NO BONUS:   {bonusNumber}");
         }
 
         public void PrintPlayersList()
@@ -110,6 +112,24 @@ namespace KinoProject
             return playersTicketsPair;
         }//end CreatePlayersTicketsPair
 
-       
+
+         //ΈΛΕΓΧΟΣ ΓΙΑ BONUS - ΕΚΤΥΠΩΣΗ ΚΑΤΗΓΟΡΙΑΣ ΑΠΟΤΕΛΕΣΜΑΤΩΝ - ΓΙΑ ΚΑΘΕ TICKET
+        public void PrintCategory(Results results, Draw draw, Ticket ticket)
+        {
+            if (!ticket.Bonus)
+            {
+                Console.WriteLine("Winning Category is: 1");
+                Console.WriteLine($"The Winnings Category is : {results.categoryWins}     ");
+                Console.WriteLine($"The amount Won: {(draw.DrawAmount * results.GetCategoryRate(results.categoryWins))}");
+            }
+            else
+            {
+                Console.WriteLine("Winning Category is: 1");
+                Console.WriteLine($"The Winnings Category is : {results.categoryWins}+");
+                Console.WriteLine($"The amount Won: {(draw.DrawAmount * results.GetCategoryRate(results.categoryWins + 6))}");
+            }
+
+        }
+
     }
 }

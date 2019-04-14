@@ -17,21 +17,35 @@ namespace KinoProject
         //                                               [0], [1],  [2],   [3],  [4],  [5],  [6],  [7],   [8],   [9],  [10], [11], [12], [13]
         private double[] categoryRates = new double[14] { 0, 0.002, 0.006, 0.01, 0.03, 0.07, 0.23, 0.004, 0.008, 0.02, 0.05, 0.15, 0.35, 0.07 };
         public double[] CategoryRates { get => categoryRates; set => categoryRates = value; }
-        
+
         public List<int> resultList;
         public int categoryWins;
         public double categoryRate;
+        public int BonusNo = 0;
+
 
         public Results()
         {
-                        resultList = new List<int>();
-                        categoryWins = 0;
-                        categoryRate = 0;
+            resultList = new List<int>();
+            categoryWins = 0;
+            categoryRate = 0;
         }
 
-        public List<int> GetResultList(List<int> drawNoList, List<int> ticketNoList)
+        public List<int> GetResultList(List<int> drawNoList, Ticket ticket)
         {
-            List<int> resultList = ticketNoList.Intersect(drawNoList).ToList(); ;
+            List<int> resultList = ticket.NumbersPlayedL.Intersect(drawNoList).ToList();
+
+            if (ticket.Bonus)
+            {
+                if (drawNoList.Last() == ticket.NumbersPlayedL.Last())
+                    BonusNo = ticket.NumbersPlayedL.Last();
+            }
+            resultList.Sort();
+            if (resultList.Contains(BonusNo))
+            {
+                resultList.Remove(BonusNo);
+                resultList.Add(BonusNo);
+            }
             return resultList;
         }
 
@@ -41,12 +55,13 @@ namespace KinoProject
             return categoryWins;
         }
 
-        public double GetCategoryPercentage(int categoryWins)
+        public double GetCategoryRate(int categoryWins)
         {
             categoryRate = categoryRates[categoryWins];
             return categoryRate;
         }
 
+      
 
     }
 }
