@@ -85,10 +85,10 @@ namespace KinoProject
 
         public int GetBonus()
         {
-            // BonusNumber = WinnerList.Last();
-            //return BonusNumber;
+            BonusNumber = WinnerList.Last();
+            return BonusNumber;
             // OR:
-            return WinnerList.Last();
+            //return WinnerList.Last();
         }
 
         //εκτύπωση της λίστας των 12 αριθμών
@@ -101,7 +101,7 @@ namespace KinoProject
                 Console.Write($"   {i},");
             }
             Console.WriteLine();
-            Console.WriteLine($"KINO BONUS:   {BonusNumber}");
+            Console.WriteLine($"KINO BONUS:   { GetBonus()}");
         }
 
 

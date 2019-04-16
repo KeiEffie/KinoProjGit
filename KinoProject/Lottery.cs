@@ -33,6 +33,14 @@ namespace KinoProject
         {
             return XxID += 1;
         }
+        //χρειαζεται να γράψω κάποιο κώδικα για tickets, για να ρωτάω πόσα tickets θα παίξει ο/οι players και να τα βάλω στην μεταβλητή noTickets
+        public int GetnoTickets()
+        {
+            int noTickets = 0;
+            Console.WriteLine("How many Tickets would you like to play? (min 1 - max 3)");
+            try { noTickets = int.Parse(Console.ReadLine()); } catch { Console.Write("You didn't enter a Number. Please try again! "); Console.WriteLine("Please enter a valid Number (min 1 - max 3):"); }
+            return noTickets;
+        }
 
         // Create Player(s)---with one or more than one tickets
         public List<Player> GetPlayersList(int noTickets)
@@ -46,30 +54,8 @@ namespace KinoProject
             return PlayersL;
         }
 
-
-
-        public void PrintSixNumbersList(List<int> alist)
-        {
-            Console.WriteLine("Player has chosen the following Numbers:");
-            foreach (int i in alist)                       //εκτύπωση της λίστας των 6 αριθμών
-            {
-                Console.Write($"   {i},");
-            }
-            //    Console.WriteLine();
-            //    Console.WriteLine($"KI NO BONUS:   {bonusNumber}");
-        }
-
-        public void PrintPlayersList()
-        {
-            Console.WriteLine("Players:");
-            foreach (Player p in PlayersL)                   //εκτύπωση της λίστας των Players
-            {
-                Console.WriteLine($"Player ID: {p.ID}");
-            }
-        }
-
         //Create Ticket(s)
-        public List<Ticket> GetTicket()
+        public List<Ticket> GetTickets(int noTickets)
         {
             var kino = new KinoGame();
             foreach (Player p in PlayersL)
@@ -83,7 +69,7 @@ namespace KinoProject
         public Ticket[] GetTickets(List<Player> PlayersL, int noTickets)
                 {
                     Ticket[] nATicket = new Ticket[noTickets - 1];
-        int z = 0;
+                    int z = 0;
 
                     foreach (Player p in PlayersL)
                     {
@@ -91,7 +77,7 @@ namespace KinoProject
                         for (z = 1; z <= p.noTickets; z++)
                         {
                             var ticket = new Ticket(Increment(XxID), p);
-        nATicket[z] = ticket;
+                            nATicket[z] = ticket;
                         }
 }
                     return nATicket;
@@ -130,6 +116,24 @@ namespace KinoProject
             }
 
         }
+        public void PrintSixNumbersList(List<int> alist)
+        {
+            Console.WriteLine("Player has chosen the following Numbers:");
+            foreach (int i in alist)                       //εκτύπωση της λίστας των 6 αριθμών
+            {
+                Console.Write($"   {i},");
+            }
+            //    Console.WriteLine();
+            //    Console.WriteLine($"KI NO BONUS:   {bonusNumber}");
+        }
 
+        public void PrintPlayersList()
+        {
+            Console.WriteLine("Players:");
+            foreach (Player p in PlayersL)                   //εκτύπωση της λίστας των Players
+            {
+                Console.WriteLine($"Player ID: {p.ID}");
+            }
+        }
     }
 }

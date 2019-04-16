@@ -78,6 +78,7 @@ namespace KinoProject
             int kinoNumber = 0;
             int count = 1;
 
+            CreateNumbersTable();
             Console.WriteLine($"Choose {noKino} Numbers from the list above from 1 to 80");
 
 
@@ -127,6 +128,27 @@ namespace KinoProject
             return KinoNumbersList;
         }//end Random
 
+        public void CreateNumbersTable()
+        {
+
+
+            for (int j = 1; j <= 80; j++)
+            {
+                if (j < 10)
+                {
+                    Console.Write("  {0}  ", j);
+                }
+                else if (j % 10 == 0)
+                {
+                    Console.Write("  {0}  ", j);
+                    Console.WriteLine();
+                }
+                else
+                {
+                    Console.Write("  {0}  ", j);
+                }
+            }
+        }
 
     }
 }

@@ -11,9 +11,8 @@ namespace KinoProject
         static void Main(string[] args)
         {
             bool ans = true;
-            Player player = new Player(1);
+            Lottery lottery = new Lottery();
             
-
             do
             {
                 int choice = 0;
@@ -37,12 +36,11 @@ namespace KinoProject
                 switch (choice)
                 {
                     case 1:
-                        CreateNumbersTable();
-                        player.CreateSixNumbersList();
-                        break;
                     case 2:
-                        var newDict=player.CreateRandomPlayersDict();
-                        player.PrintRandomPlayersWithNumbersDict(newDict);
+                        CreateNumbersTable();
+                        int noTickets=lottery.GetnoTickets();
+                        lottery.GetPlayersList(noTickets);
+                        lottery.GetTickets(noTickets);
                         break;
                     case 3:
                         double drawAmount = 0;
@@ -59,10 +57,11 @@ namespace KinoProject
                             
                         } while (test);
                         Draw draw = new Draw(drawAmount);
-                        draw.PrintWinnerList();
+                        draw.DrawNumbers();
+                        draw.PrintDrawNumbersList();
                         break;
                     case 4:
-
+                        lottery.PrintCategory();
                         break;
                     case 5:
                         break;
