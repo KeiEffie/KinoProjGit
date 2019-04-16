@@ -49,7 +49,7 @@ namespace KinoProject
        
 
 
-        public int GetNoKino()
+        private int GetNoKino()
         {
             Console.WriteLine("How many Kino Numbers would you like to play? (min 3 - max 15)");
             try { noKino = int.Parse(Console.ReadLine()); } catch { Console.Write("You didn't enter a Number. Please try again! "); Console.WriteLine("Please enter a valid Number (min 3 - max 15):"); }
@@ -73,7 +73,7 @@ namespace KinoProject
         }
 
         // Δημιουργία μιας λίστας με KINO numbers - Manually 
-        public List<int> CreateManualKINONumbersList(int noKino)
+        private List<int> CreateManualKINONumbersList(int noKino)
         {
             int kinoNumber = 0;
             int count = 1;
@@ -107,7 +107,7 @@ namespace KinoProject
         }//end Manual
 
         // Δημιουργία μιας λίστας με KINO numbers - Randomly
-        public List<int> CreateRandomKINONumbersList(int noKino)
+        private List<int> CreateRandomKINONumbersList(int noKino)
         {
             Random random = new Random();
             int randomNumber = (random.Next(1, 80));

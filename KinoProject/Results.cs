@@ -35,17 +35,12 @@ namespace KinoProject
         {
             List<int> resultList = ticket.NumbersPlayedL.Intersect(drawNoList).ToList();
 
-            if (ticket.NumBonus)
+            if (ticket.bonus)
             {
                 if (drawNoList.Last() == ticket.NumbersPlayedL.Last())
                     BonusNo = ticket.NumbersPlayedL.Last();
             }
-            resultList.Sort();
-            if (resultList.Contains(BonusNo))
-            {
-                resultList.Remove(BonusNo);
-                resultList.Add(BonusNo);
-            }
+            SortResultList();
             return resultList;
         }
 
@@ -61,7 +56,15 @@ namespace KinoProject
             return categoryRate;
         }
 
-      
+        public List<int> SortResultList()
+        {
+            resultList.Sort();
+            resultList.Remove(BonusNo);
+            resultList.Add(BonusNo);
+
+            return resultList;
+        }
+
 
     }
 }

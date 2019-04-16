@@ -34,9 +34,7 @@ namespace KinoProject
             return XxID += 1;
         }
 
-        // kalo to kinogame create numbers kai vazo prin ayto:
-        //PlayersL.Add(new Player(r.Next(501, 1501)));
-
+        // Create Player(s)---with one or more than one tickets
         public List<Player> GetPlayersList(int noTickets)
         {
                 while(noTickets !=0)
@@ -48,17 +46,7 @@ namespace KinoProject
             return PlayersL;
         }
 
-        public List<Ticket> GetTicket()
-        {
-            var kino = new KinoGame();
-            int noKinos = kino.GetNoKino();
-            foreach (Player p in PlayersL)
-            {
-                var ticket = new Ticket(Increment(XxID), kino.GetBonus(), noKinos, p);
-                TicketL.Add(ticket);
-            }
-            return TicketL;
-        }
+
 
         public void PrintSixNumbersList(List<int> alist)
         {
@@ -80,25 +68,33 @@ namespace KinoProject
             }
         }
 
-        public Ticket[] GetTickets(List<Player> PlayersL, int noTickets)
-       
-       // public Ticket[] GetTickets(List<Player> PlayersL, int noTickets)
+        //Create Ticket(s)
+        public List<Ticket> GetTicket()
         {
-            Ticket[] nATicket = new Ticket[noTickets-1];
-            int z = 0;
-            
-            foreach (Player p in PlayersL)                   
+            var kino = new KinoGame();
+            foreach (Player p in PlayersL)
             {
-                var kino = new KinoGame(); 
-                int noKinos = kino.GetNoKino();
-
-                for (z=1; z <= p.noTickets; z++)
-                {
-                    var ticket = new Ticket(Increment(XxID), kino.GetBonus(), noKinos, p);
-                    nATicket[z] = ticket;
-                }
+                var ticket = new Ticket(Increment(XxID), p);
+                TicketL.Add(ticket);
             }
-            return nATicket;
+            return TicketL;
+        }
+
+        public Ticket[] GetTickets(List<Player> PlayersL, int noTickets)
+                {
+                    Ticket[] nATicket = new Ticket[noTickets - 1];
+        int z = 0;
+
+                    foreach (Player p in PlayersL)
+                    {
+                        var kino = new KinoGame();
+                        for (z = 1; z <= p.noTickets; z++)
+                        {
+                            var ticket = new Ticket(Increment(XxID), p);
+        nATicket[z] = ticket;
+                        }
+}
+                    return nATicket;
         }
 
         public Dictionary<List<Player>, Ticket[]> CreatePlayersTicketsPair(List<Player> PlayersL, int noTickets)
@@ -116,17 +112,21 @@ namespace KinoProject
          //ΈΛΕΓΧΟΣ ΓΙΑ BONUS - ΕΚΤΥΠΩΣΗ ΚΑΤΗΓΟΡΙΑΣ ΑΠΟΤΕΛΕΣΜΑΤΩΝ - ΓΙΑ ΚΑΘΕ TICKET
         public void PrintCategory(Results results, Draw draw, Ticket ticket)
         {
-            if ((draw.BonusNumber = ticket.NumbersPlayedL.Last())
+            //ticket.kino ? ticket.NumbersPlayedL.Last() : 0;
+            if (ticket.bonus)
             {
-                Console.WriteLine("Winning Category is: ");
-                Console.WriteLine($"The Winnings Category is : {results.categoryWins}     ");
-                Console.WriteLine($"The amount Won: {(draw.DrawAmount * results.GetCategoryRate(results.categoryWins))}");
+                if (ticket.NumbersPlayedL.Last() == draw.BonusNumber)
+                {
+                    Console.WriteLine("Winning Category is: ");
+                    Console.WriteLine($"The Winnings Category is : {results.categoryWins}+");
+                    Console.WriteLine($"The amount Won: {(draw.DrawAmount * results.GetCategoryRate(results.categoryWins + 6))}");
+                }
             }
             else
             {
                 Console.WriteLine("Winning Category is: ");
-                Console.WriteLine($"The Winnings Category is : {results.categoryWins}+");
-                Console.WriteLine($"The amount Won: {(draw.DrawAmount * results.GetCategoryRate(results.categoryWins + 6))}");
+                Console.WriteLine($"The Winnings Category is : {results.categoryWins}     ");
+                Console.WriteLine($"The amount Won: {(draw.DrawAmount * results.GetCategoryRate(results.categoryWins))}");
             }
 
         }

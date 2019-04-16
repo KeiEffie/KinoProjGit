@@ -17,7 +17,7 @@ namespace KinoProject
         public KinoGame kino;
       
 
-        public Ticket(int id, bool bonus, Player player)
+        public Ticket(int id, Player player)
         {
             ID = id;
             Player = player;

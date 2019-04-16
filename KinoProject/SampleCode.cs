@@ -287,20 +287,37 @@
 
 //        }
 
-            //public bool GetManualBonusKino()
-            //{
-            //    Console.WriteLine("Would you like to play KINO Bonus ? (0:No, 1:Yes)");
-            //    try { bonus = bool.Parse(Console.ReadLine()); } catch { Console.Write("You didn't enter a Number. Please try again! "); Console.WriteLine("Please enter a valid Number:(0/1), 0:No Bonus, 1:Yes: (Play Bonus):"); }
-            //    return bonus;
-            //}
+                //public bool GetManualBonusKino()
+                //{
+                //    Console.WriteLine("Would you like to play KINO Bonus ? (0:No, 1:Yes)");
+                //    try { bonus = bool.Parse(Console.ReadLine()); } catch { Console.Write("You didn't enter a Number. Please try again! "); Console.WriteLine("Please enter a valid Number:(0/1), 0:No Bonus, 1:Yes: (Play Bonus):"); }
+                //    return bonus;
+                //}
 
-            //public bool GetRandomBonusKino()
-            //{
-            //    Console.WriteLine("Would you like to play KINO Bonus for your Automatic Players? (0:No, 1:Yes)");
-            //    try { bonus = bool.Parse(Console.ReadLine()); } catch { Console.Write("You didn't enter a Number. Please try again! "); Console.WriteLine("Please enter a valid Number:(0/1), 0:No Bonus, 1:Yes: (Play Bonus):"); }
-            //    return bonus;
-            //}
+                //public bool GetRandomBonusKino()
+                //{
+                //    Console.WriteLine("Would you like to play KINO Bonus for your Automatic Players? (0:No, 1:Yes)");
+                //    try { bonus = bool.Parse(Console.ReadLine()); } catch { Console.Write("You didn't enter a Number. Please try again! "); Console.WriteLine("Please enter a valid Number:(0/1), 0:No Bonus, 1:Yes: (Play Bonus):"); }
+                //    return bonus;
+                //}
+                //public Ticket[] GetTickets(List<Player> PlayersL, int noTickets)
 
+                // public Ticket[] GetTickets(List<Player> PlayersL, int noTickets)
+//                {
+//                    Ticket[] nATicket = new Ticket[noTickets - 1];
+//int z = 0;
+
+//                    foreach (Player p in PlayersL)
+//                    {
+//                        var kino = new KinoGame();
+//                        for (z = 1; z <= p.noTickets; z++)
+//                        {
+//                            var ticket = new Ticket(Increment(XxID), p);
+//nATicket[z] = ticket;
+//                        }
+//                    }
+//                    return nATicket;
+//                }
 
 
 
