@@ -13,7 +13,7 @@
 //            switch (choice)
 //            {
 //                case 1:
-                   
+
 //                    lottery.CreateNumbersTable();
 //                    player.CreateSixNumbersList();
 //                    break;
@@ -286,5 +286,23 @@
 //        }
 
 //        }
+
+            //public bool GetManualBonusKino()
+            //{
+            //    Console.WriteLine("Would you like to play KINO Bonus ? (0:No, 1:Yes)");
+            //    try { bonus = bool.Parse(Console.ReadLine()); } catch { Console.Write("You didn't enter a Number. Please try again! "); Console.WriteLine("Please enter a valid Number:(0/1), 0:No Bonus, 1:Yes: (Play Bonus):"); }
+            //    return bonus;
+            //}
+
+            //public bool GetRandomBonusKino()
+            //{
+            //    Console.WriteLine("Would you like to play KINO Bonus for your Automatic Players? (0:No, 1:Yes)");
+            //    try { bonus = bool.Parse(Console.ReadLine()); } catch { Console.Write("You didn't enter a Number. Please try again! "); Console.WriteLine("Please enter a valid Number:(0/1), 0:No Bonus, 1:Yes: (Play Bonus):"); }
+            //    return bonus;
+            //}
+
+
+
+
 //    }
 //}

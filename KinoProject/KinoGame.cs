@@ -9,28 +9,23 @@ namespace KinoProject
     class KinoGame
     {
         public List<int> KinoNumbersList { get; set; }
-        public bool bonus;
+
         public int noKino;
         public bool isManual = true;
 
 
-        public KinoGame(int noKino)
-        {
-            KinoNumbersList = new List<int>(noKino);
-            bonus = GetBonus();
-        }
-
         public KinoGame()
         {
-
+            KinoNumbersList =  new List<int>();
         }
-        ////createNumbersList
-        ////Bonus
 
+        //public KinoGame()
+        //{
 
+        //}
 
         //Manual or Random create Kino Numbers List
-        public bool ManualRandomChoice()
+        public bool ChooseManualRandom()
         {
             Console.WriteLine("Would you like to choose Kino numbers");
             Console.WriteLine("Or let the Kino System choose 6 Numbers from 1 to 80  Randomly for you");
@@ -51,52 +46,34 @@ namespace KinoProject
             return isManual;
         }//end Manual OR Random
 
-        // Get Bonus
-        public bool GetBonus()
-        {
-            bool anas = false;
-            while (!anas)
-            {
-                string ansBonus = "";
-
-                Console.Write($"Will you play a Bonus number? (Y/N): ");
-                try { ansBonus = Console.ReadLine(); } catch { Console.Write("You didn't enter a Y or N. Please try again! "); Console.WriteLine("Will you play a Bonus number? (Y/N): "); }
-                if (ansBonus.ToUpper() == "Y")
-                {
-                    //bonusNumber = kinoNumber;  // actually is the last number of x-length list
-                    bonus = anas = true;
-                }
-            }
-            return bonus;
-        }//end GetBonus
-
-
        
-        public int GetnoKINO()
+
+
+        public int GetNoKino()
         {
             Console.WriteLine("How many Kino Numbers would you like to play? (min 3 - max 15)");
             try { noKino = int.Parse(Console.ReadLine()); } catch { Console.Write("You didn't enter a Number. Please try again! "); Console.WriteLine("Please enter a valid Number (min 3 - max 15):"); }
             return noKino;
         }
 
-        public List<int> SetKINOList(int noKino)
+        public List<int> SetKinoList()
         {
-            ManualRandomChoice();
-            noKino = GetnoKINO();
-            List<int> KinoNumbersList = new List<int>(noKino);
+            //List<int> KinoNumbersList = new List<int>();
+            ChooseManualRandom();
+            noKino = GetNoKino();
             if (isManual)
             {
-                KinoNumbersList = CreateManualKINONumbersList();
+                KinoNumbersList = CreateManualKINONumbersList(noKino);
             }
             else
             {
-                KinoNumbersList = CreateRandomKINONumbersList();
+                KinoNumbersList = CreateRandomKINONumbersList(noKino);
             }
-            return KinoNumbersList;
+          return KinoNumbersList;
         }
 
         // Δημιουργία μιας λίστας με KINO numbers - Manually 
-        public List<int> CreateManualKINONumbersList()
+        public List<int> CreateManualKINONumbersList(int noKino)
         {
             int kinoNumber = 0;
             int count = 1;
@@ -130,22 +107,22 @@ namespace KinoProject
         }//end Manual
 
         // Δημιουργία μιας λίστας με KINO numbers - Randomly
-        public List<int> CreateRandomKINONumbersList()
+        public List<int> CreateRandomKINONumbersList(int noKino)
         {
             Random random = new Random();
-            int idNumber = (random.Next(1, 80));
+            int randomNumber = (random.Next(1, 80));
 
             for (int j = 0; j < KinoNumbersList.Capacity; j++)
             {
-                if (!KinoNumbersList.Contains(idNumber))
+                if (!KinoNumbersList.Contains(randomNumber))
                 {
-                    KinoNumbersList.Add(idNumber);
+                    KinoNumbersList.Add(randomNumber);
                 }
                 else
                 {
                     j--;
                 }
-                idNumber = (random.Next(1, 80));
+                randomNumber = (random.Next(1, 80));
             }
             return KinoNumbersList;
         }//end Random

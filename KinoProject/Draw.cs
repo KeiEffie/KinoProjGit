@@ -58,7 +58,7 @@ namespace KinoProject
         // ΚΛΗΡΩΣΕ 12 ΜΟΝΑΔΙΚΟΥΣ ΑΡΙΘΜΟΥΣ, ο 12ος είναι και KINO BONUS     
         public List<int> DrawNumbers()
         {
-            List<int> DrawNumList = new List<int>();
+            List<int> WinnerList = new List<int>();
             Random numberToDraw = new Random();
 
             int counter = 1;
@@ -68,10 +68,10 @@ namespace KinoProject
 
             while (counter <= 12)
             {
-                if (!DrawNumList.Contains(randomDraw))
+                if (!WinnerList.Contains(randomDraw))
   ///Αν δεν υπάρχει στην λίστα πρόσθεσέ το
               {
-                    DrawNumList.Add(randomDraw);
+                    WinnerList.Add(randomDraw);
                 }
                 else
                 {
@@ -80,7 +80,7 @@ namespace KinoProject
                 randomDraw = numberToDraw.Next(1, 80);
                 counter++;
             }
-            return DrawNumList;
+            return WinnerList;
         }
 
         public int GetBonus()

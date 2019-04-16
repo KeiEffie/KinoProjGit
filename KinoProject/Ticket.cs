@@ -11,24 +11,18 @@ namespace KinoProject
     {
         
         public int ID { get; set; }
-        public Player Player;
         public List<int> NumbersPlayedL;
-        public bool Bonus;
-        //public int DrawTimes;
-        //public int WinersCategory;
-
+        public bool bonus;
+        public Player Player;
         public KinoGame kino;
-        //{
-        //  get {return kino;}
-        //  set {kino = value;}
-        //}
+      
 
-        public Ticket(int id, bool bonus, int noKinos, Player player)
+        public Ticket(int id, bool bonus, Player player)
         {
             ID = id;
             Player = player;
-            NumbersPlayedL = new KinoGame(noKinos).SetKINOList(noKinos);
-            Bonus = kino.bonus;
+            NumbersPlayedL = new KinoGame().SetKinoList();
+            bonus = GetBonus(); 
         }
 
 
@@ -37,6 +31,23 @@ namespace KinoProject
 
         }
 
+        // Get Bonus
+        public bool GetBonus()
+        {
+            bool anas = false;
+            while (!anas)
+            {
+                string ansBonus = "";
 
+                Console.Write($"Will you play a Bonus number? (Y/N): ");
+                try { ansBonus = Console.ReadLine(); } catch { Console.Write("You didn't enter a Y or N. Please try again! "); Console.WriteLine("Will you play a Bonus number? (Y/N): "); }
+                if (ansBonus.ToUpper() == "Y")
+                {
+                    //bonusNumber = kinoNumber;  // actually is the last number of n-length list
+                    bonus = anas = true;
+                }
+            }
+            return bonus;
+        }//end GetBonus
     }//end class and namespace
 }

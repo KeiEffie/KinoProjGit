@@ -51,7 +51,7 @@ namespace KinoProject
         public List<Ticket> GetTicket()
         {
             var kino = new KinoGame();
-            int noKinos = kino.GetnoKINO();
+            int noKinos = kino.GetNoKino();
             foreach (Player p in PlayersL)
             {
                 var ticket = new Ticket(Increment(XxID), kino.GetBonus(), noKinos, p);
@@ -90,7 +90,7 @@ namespace KinoProject
             foreach (Player p in PlayersL)                   
             {
                 var kino = new KinoGame(); 
-                int noKinos = kino.GetnoKINO();
+                int noKinos = kino.GetNoKino();
 
                 for (z=1; z <= p.noTickets; z++)
                 {
@@ -116,7 +116,7 @@ namespace KinoProject
          //ΈΛΕΓΧΟΣ ΓΙΑ BONUS - ΕΚΤΥΠΩΣΗ ΚΑΤΗΓΟΡΙΑΣ ΑΠΟΤΕΛΕΣΜΑΤΩΝ - ΓΙΑ ΚΑΘΕ TICKET
         public void PrintCategory(Results results, Draw draw, Ticket ticket)
         {
-            if (!ticket.Bonus)
+            if ((draw.BonusNumber = ticket.NumbersPlayedL.Last())
             {
                 Console.WriteLine("Winning Category is: ");
                 Console.WriteLine($"The Winnings Category is : {results.categoryWins}     ");

@@ -35,7 +35,7 @@ namespace KinoProject
         {
             List<int> resultList = ticket.NumbersPlayedL.Intersect(drawNoList).ToList();
 
-            if (ticket.Bonus)
+            if (ticket.NumBonus)
             {
                 if (drawNoList.Last() == ticket.NumbersPlayedL.Last())
                     BonusNo = ticket.NumbersPlayedL.Last();
