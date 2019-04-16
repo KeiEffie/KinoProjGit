@@ -118,13 +118,13 @@ namespace KinoProject
         {
             if (!ticket.Bonus)
             {
-                Console.WriteLine("Winning Category is: 1");
+                Console.WriteLine("Winning Category is: ");
                 Console.WriteLine($"The Winnings Category is : {results.categoryWins}     ");
                 Console.WriteLine($"The amount Won: {(draw.DrawAmount * results.GetCategoryRate(results.categoryWins))}");
             }
             else
             {
-                Console.WriteLine("Winning Category is: 1");
+                Console.WriteLine("Winning Category is: ");
                 Console.WriteLine($"The Winnings Category is : {results.categoryWins}+");
                 Console.WriteLine($"The amount Won: {(draw.DrawAmount * results.GetCategoryRate(results.categoryWins + 6))}");
             }
