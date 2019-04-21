@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="KinoProject.Program">
+    <Position X="6.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAA=</HashCode>
+      <FileName>Program.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="KinoProject.KinoGame">
+    <Position X="3" Y="0.5" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAgBAAAAAAAABAAAAAAAAAAAAAAACEAAAIQAAAACgAA=</HashCode>
+      <FileName>KinoGame.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="KinoProject.Draw">
+    <Position X="0.5" Y="0.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>EAAAAAAAAAAAgIAEAQAAgBAAAAAAAAIAAAAAAACAAgA=</HashCode>
+      <FileName>Draw.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="KinoProject.Lottery">
+    <Position X="6" Y="1.75" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AYQAAAAAAAAAAACIIAACABgAQAEAAAAAAAQAIgAAQAA=</HashCode>
+      <FileName>Lottery.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="KinoProject.Results">
+    <Position X="0.5" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AgYAAAACAAAAIAAEAAAAAABAAAAQAAAAAAAAAAgAEAA=</HashCode>
+      <FileName>Results.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="KinoProject.Ticket">
+    <Position X="3.5" Y="4.75" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAgAAgAIACgAAAAAAAAAAAAAAAAQAAAAA=</HashCode>
+      <FileName>Ticket.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
