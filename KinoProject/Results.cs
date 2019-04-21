@@ -21,7 +21,7 @@ namespace KinoProject
         public List<int> resultList;
         public int categoryWins;
         public double categoryRate;
-        public int BonusNo = 0;
+        public int bonusNo;
 
 
         public Results()
@@ -29,28 +29,30 @@ namespace KinoProject
             resultList = new List<int>();
             categoryWins = 0;
             categoryRate = 0;
+            bonusNo = 0;
         }
 
-        public List<int> GetResultList(List<int> drawNoList, Ticket ticket)
+        public List<int> GetResultList(List<int> drawList, List<int> ticketList)
         {
-            List<int> resultList = ticket.NumbersPlayedL.Intersect(drawNoList).ToList();
+            //List<int> resultList = new List<int>();
+            resultList = ticketList.Intersect(drawList).ToList();
 
-            if (ticket.bonus)
+            if (drawList.Last() == ticketList.Last())
             {
-                if (drawNoList.Last() == ticket.NumbersPlayedL.Last())
-                    BonusNo = ticket.NumbersPlayedL.Last();
+                bonusNo = ticketList.Last();
             }
-            SortResultList();
+
+          //  SortResultList();
             return resultList;
         }
 
-        public int GetCategoryNo(List<int> resultList)
+        public int GetCategoryNo(List<int> resultList)  //katigoria kerdon, posa noumera epiase
         {
             categoryWins = resultList.Count;
             return categoryWins;
         }
 
-        public double GetCategoryRate(int categoryWins)
+        public double GetCategoryRate(int categoryWins)     // symfona me ta noumera pou epiase poia katigoria kerdon me pososta tha piasei
         {
             categoryRate = categoryRates[categoryWins];
             return categoryRate;
@@ -59,8 +61,8 @@ namespace KinoProject
         public List<int> SortResultList()
         {
             resultList.Sort();
-            resultList.Remove(BonusNo);
-            resultList.Add(BonusNo);
+            resultList.Remove(bonusNo);
+            resultList.Add(bonusNo);
 
             return resultList;
         }

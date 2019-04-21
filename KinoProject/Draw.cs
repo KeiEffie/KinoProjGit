@@ -13,46 +13,25 @@ namespace KinoProject
         public int BonusNumber { get; set; }
         public double DrawAmount { get; set; }
 
-        private int id;
-        public int ID
+        public int id;
+        
+      //den μπορεί να κάνει initialize με το bonus
+        public Draw(int ids, double drawAmount)
         {
-            get
-            {
-                return id;
-            }
-            set
-            {
-                id = value;
-            }
-        }
-
-
-
-        //προσωρινά μόνο
-        public Draw()
-        {
-
-        }
-
-        //den μπορεί να κάνει initialize με το bonus
-        public Draw(double drawAmount)
-        {
-            ID = id;
+            id = ids;
             WinnerList = DrawNumbers();
             BonusNumber = GetBonus();
             DrawAmount = drawAmount;
         }
         public override string ToString()
         {
-            return "Draw ID:" + ID + " BonusNumber: " + BonusNumber + " Draw Amount: " + DrawAmount + " Winning KINO Numbers are:" + string.Join(",", WinnerList.ToArray());
+            return "Draw ID:" + id + " BonusNumber: " + BonusNumber + " Draw Amount: " + DrawAmount + " Winning KINO Numbers are:" + string.Join(",", WinnerList.ToArray());
         }
 
-        public string ListToString()
-        {
-            string DrawNumListChar = string.Join(", ", WinnerList.ToArray());
-
-            return DrawNumListChar;
-        }
+        //public  ListToString()   //δεν χρησιμοποιείται, είναι για αναφορά για το Join()
+        //{ 
+        //    string DrawNumListChar = string.Join(", ", WinnerList.ToArray());
+        //}
 
         // ΚΛΗΡΩΣΕ 12 ΜΟΝΑΔΙΚΟΥΣ ΑΡΙΘΜΟΥΣ, ο 12ος είναι και KINO BONUS     
         public List<int> DrawNumbers()
@@ -94,12 +73,13 @@ namespace KinoProject
         public void PrintDrawNumbersList()
         {
             Console.WriteLine($"The Amount of this Draw is {DrawAmount} ");
-            Console.WriteLine($"The Winning Numbers of Draw {ID} are the following:");
-            foreach (int i in WinnerList)
-            {
-                Console.Write($"   {i},");
-            }
-            Console.WriteLine();
+            Console.WriteLine($"The Winning Numbers of Draw with ID: {id} are the following:");
+            string WinnerListToString = String.Join(", ", WinnerList.Select(i => i.ToString()));
+            //foreach (int i in WinnerList)
+            //{
+            //    Console.Write($"   {i},");
+            //}
+            Console.WriteLine(WinnerListToString);
             Console.WriteLine($"KINO BONUS:   { GetBonus()}");
         }
 

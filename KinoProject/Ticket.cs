@@ -9,51 +9,43 @@ namespace KinoProject
    
     class Ticket
     {
-        
         public int ID { get; set; }
         public List<int> NumbersPlayedL;
         public bool bonus;
-        //public Player Player;
-       // public KinoGame kino;
       
 
         public Ticket(int id)
         {
             ID = id;
-            //Player = player;
             NumbersPlayedL = new KinoGame().SetKinoList();
             bonus = GetBonus(); 
         }
 
-
-        public Ticket()
-        {
-
-        }
-
         public override string ToString()
         {
-            return "Ticket ID: " + ID + " Numbers on Ticket: " + NumbersPlayedL.ToString().ToArray(); 
+            return "Ticket ID: " + ID + " Numbers on Ticket: " + String.Join(", ", NumbersPlayedL.Select(i => i.ToString())) + (bonus ? $"with Kino Bonus: {NumbersPlayedL.Last()}" : "");
         }
-
 
         // Get Bonus
         public bool GetBonus()
         {
-            bool anas = false;
-            while (!anas)
-            {
-                string ansBonus = "";
-
-                Console.Write($"Will you play a Bonus number? (Y/N): ");
-                try { ansBonus = Console.ReadLine(); } catch { Console.Write("You didn't enter a Y or N. Please try again! "); Console.WriteLine("Will you play a Bonus number? (Y/N): "); }
-                if (ansBonus.ToUpper() == "Y")
-                {
-                    //bonusNumber = kinoNumber;  // actually is the last number of n-length list
-                    bonus = anas = true;
-                }
-            }
+            Console.Write($"Will you play a Bonus number? (Y/N): ");
+            string ansBonus = Console.ReadLine();
+                    if (ansBonus.ToUpper() == "Y")
+                    {
+                        bonus = true;
+                    }
+                    else if (ansBonus.ToUpper() == "N")
+                    {
+                        bonus = false;
+                    }
+                    else
+                    {
+                    Console.Write("You didn't enter a Y or N. Please try again! "); Console.WriteLine("Will you play a Bonus number? (Y/N): ");
+                    }
             return bonus;
         }//end GetBonus
+
+
     }//end class and namespace
 }

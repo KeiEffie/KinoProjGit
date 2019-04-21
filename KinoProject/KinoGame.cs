@@ -11,7 +11,7 @@ namespace KinoProject
         public List<int> KinoNumbersList { get; set; }
 
         public int noKino;
-        public bool isManual = true;
+        private bool isManual = true;
 
 
         public KinoGame()
@@ -19,13 +19,9 @@ namespace KinoProject
             KinoNumbersList =  new List<int>();
         }
 
-        //public KinoGame()
-        //{
-
-        //}
-
+       
         //Manual or Random create Kino Numbers List
-        public bool ChooseManualRandom()
+        private bool ChooseManualRandom()
         {
             
             Console.WriteLine("Would you like to choose Kino numbers");
@@ -52,12 +48,18 @@ namespace KinoProject
         }//end Manual OR Random
 
        
-
-
+        //get how many KINo Number will be on Ticket (3-15)
         private int GetNoKino()
         {
             Console.WriteLine("How many Kino Numbers would you like to play? (min 3 - max 15)");
-            try { noKino = int.Parse(Console.ReadLine()); } catch { Console.Write("You didn't enter a Number. Please try again! "); Console.WriteLine("Please enter a valid Number (min 3 - max 15):"); }
+            try {
+                noKino = int.Parse(Console.ReadLine());
+                if (noKino < 3 || noKino > 10)
+                {
+                    Console.Write("You didn't enter a Valid Number. Please try again! "); Console.WriteLine("Please enter a valid Number (min 3 - max 15):");
+                }
+                } catch { Console.Write("You didn't enter a Number. Please try again! "); Console.WriteLine("Please enter a valid Number (min 3 - max 15):"); }
+
             return noKino;
         }
 
@@ -78,7 +80,7 @@ namespace KinoProject
           return KinoNumbersList;
         }
         // sort the list but keep last the probable Kino Bonus 
-        public List<int> SortKinoNumbersList()
+        private List<int> SortKinoNumbersList()
         {
 
             var temp = KinoNumbersList.Last();
@@ -146,8 +148,6 @@ namespace KinoProject
 
         public void CreateNumbersTable()
         {
-
-
             for (int j = 1; j <= 80; j++)
             {
                 if (j < 10)

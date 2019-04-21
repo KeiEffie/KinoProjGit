@@ -22,7 +22,7 @@ namespace KinoProject
 
         public override string ToString()
         {
-            return "Player ID:" + ID + " " +  "TicketsPlayed" + noTickets;
+            return "Player ID:" + ID + " " +  "TicketsPlayed" + noTickets + " Numbers on Ticket: " + String.Join(", ", TicketsPlayList.Select(i => i.ToString()));
         }
 
 

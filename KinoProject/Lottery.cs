@@ -20,6 +20,7 @@ namespace KinoProject
 
         public List<int> WonNumbers { get; set; }
         public int XxID { get; set; }
+     
 
         public Lottery()
         {
@@ -98,7 +99,18 @@ namespace KinoProject
             return tempTicketList;
         }
 
-
+        public void GetResults()   /// thelei douleiaaaaa
+        {
+            Results results = new Results();
+            foreach (Ticket t in TicketL)
+            {
+                foreach (Draw d in DrawL)
+                {
+                    var resultList = results.GetResultList(d.WinnerList, t.NumbersPlayedL);
+                    PrintCategory(results, d, t);
+                }
+            }
+        }
          //ΈΛΕΓΧΟΣ ΓΙΑ BONUS - ΕΚΤΥΠΩΣΗ ΚΑΤΗΓΟΡΙΑΣ ΑΠΟΤΕΛΕΣΜΑΤΩΝ - ΓΙΑ ΚΑΘΕ TICKET
         public void PrintCategory(Results results, Draw draw, Ticket ticket)
         {
@@ -118,7 +130,6 @@ namespace KinoProject
                 Console.WriteLine($"The Winnings Category is : {results.categoryWins}     ");
                 Console.WriteLine($"The amount Won: {(draw.DrawAmount * results.GetCategoryRate(results.categoryWins))}");
             }
-
         }
 
 
@@ -132,7 +143,7 @@ namespace KinoProject
                 foreach(Ticket t in p.TicketsPlayList)                    //εκτύπωση της λίστας των Tickets του κάθε Player
                 {
                     string KinoNumsOnTicket = String.Join(", ", t.NumbersPlayedL.Select(i => i.ToString()));
-                    Console.WriteLine("Ticket ID: {0} with KINO Numbers:{1} ,  {2}:{3}  ", t.ID,  KinoNumsOnTicket,   (t.bonus? "with Kino Bonus":""), t.NumbersPlayedL.Last());
+                    Console.WriteLine("Ticket ID: {0} with KINO Numbers:{1} ,  {2}", t.ID, KinoNumsOnTicket, (t.bonus ? $"with Kino Bonus: {t.NumbersPlayedL.Last()}" : ""));
 
                     //Console.WriteLine(String.Join(", ", t.NumbersPlayedL.Select(i => i.ToString())));
                     // OR THE FOLLOWING:!!!!!!!!!!!!!!

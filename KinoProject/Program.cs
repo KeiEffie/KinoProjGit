@@ -18,12 +18,11 @@ namespace KinoProject
                 int choice = 0;
                 Console.WriteLine();
                 Console.WriteLine("Choose a category number");
-                Console.WriteLine("1. One Player Kino Game");
-                Console.WriteLine("2. Many Players Kino Game");
-                Console.WriteLine("3. Make the Draw");
-                Console.WriteLine("4. Winners");
-                Console.WriteLine("5. Statistics");
-                Console.WriteLine("6. Exit");
+                Console.WriteLine("1. Play Tickets for Kino Game");
+                Console.WriteLine("2. Make the Draw");
+                Console.WriteLine("3. Winners");
+                Console.WriteLine("4. Statistics");
+                Console.WriteLine("5. Exit");
 
                 try
                 {
@@ -36,38 +35,45 @@ namespace KinoProject
                 switch (choice)
                 {
                     case 1:
-                    case 2:
                         lottery.PlayKino();
                         lottery.PrintPlayersListDetails();
                         break;
-                    case 3:
-                        double drawAmount = 0;
-                        bool test = false;
-                        do
+                    case 2:
+                        if (lottery.TicketL.Count != 0)
                         {
-                            Console.WriteLine("Enter the Total Draw Amount to be shared: ");
-                            try { drawAmount = double.Parse(Console.ReadLine());}
-                            catch
+
+                            double drawAmount = 0;
+                            bool trying = false;
+                            do
                             {
-                                test = true;
-                                Console.WriteLine("Enter a valid double for total Draw Amount");
-                            }
-                            
-                        } while (test);
-                        Draw draw = new Draw(drawAmount);
-                        draw.DrawNumbers();
-                        draw.PrintDrawNumbersList();
+                                Console.WriteLine("Enter the Total Draw Amount to be shared: ");
+                                try { drawAmount = double.Parse(Console.ReadLine()); }
+                                catch
+                                {
+                                    trying = true;
+                                    Console.WriteLine("Enter a valid double for total Draw Amount");
+                                }
+
+                            } while (trying);
+                            Draw draw = new Draw(lottery.Increment(lottery.XxID),drawAmount);
+                            draw.DrawNumbers();
+                            draw.PrintDrawNumbersList();
+                            lottery.DrawL.Add(draw);
+                        }
+                        else
+                        {
+                            Console.WriteLine("No Ticket has been Played! Play fist a Kino! Then make a Draw");
+                        }
+                        break;
+
+                    case 3:
+                        lottery.GetResults();
                         break;
                     case 4:
-                        //lottery.PrintCategory();
                         break;
                     case 5:
-                        break;
-                    case 6:
                         Console.WriteLine("You chose to Exit Program");
                         return;
-                    case 7:
-                        break;
                     default:
                         break;
                 }//end switch
@@ -79,6 +85,7 @@ namespace KinoProject
                 try
                 {
                     if (answ.ToUpper() != "Y"){ans = false;}
+                    else if (answ.ToUpper() != "N") { ans = true; }
                 }
                 catch
                 {
