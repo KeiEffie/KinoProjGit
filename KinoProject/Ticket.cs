@@ -13,14 +13,14 @@ namespace KinoProject
         public int ID { get; set; }
         public List<int> NumbersPlayedL;
         public bool bonus;
-        public Player Player;
-        public KinoGame kino;
+        //public Player Player;
+       // public KinoGame kino;
       
 
-        public Ticket(int id, Player player)
+        public Ticket(int id)
         {
             ID = id;
-            Player = player;
+            //Player = player;
             NumbersPlayedL = new KinoGame().SetKinoList();
             bonus = GetBonus(); 
         }
@@ -30,6 +30,12 @@ namespace KinoProject
         {
 
         }
+
+        public override string ToString()
+        {
+            return "Ticket ID: " + ID + " Numbers on Ticket: " + NumbersPlayedL.ToString().ToArray(); 
+        }
+
 
         // Get Bonus
         public bool GetBonus()

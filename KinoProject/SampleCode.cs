@@ -287,22 +287,22 @@
 
 //        }
 
-                //public bool GetManualBonusKino()
-                //{
-                //    Console.WriteLine("Would you like to play KINO Bonus ? (0:No, 1:Yes)");
-                //    try { bonus = bool.Parse(Console.ReadLine()); } catch { Console.Write("You didn't enter a Number. Please try again! "); Console.WriteLine("Please enter a valid Number:(0/1), 0:No Bonus, 1:Yes: (Play Bonus):"); }
-                //    return bonus;
-                //}
+//public bool GetManualBonusKino()
+//{
+//    Console.WriteLine("Would you like to play KINO Bonus ? (0:No, 1:Yes)");
+//    try { bonus = bool.Parse(Console.ReadLine()); } catch { Console.Write("You didn't enter a Number. Please try again! "); Console.WriteLine("Please enter a valid Number:(0/1), 0:No Bonus, 1:Yes: (Play Bonus):"); }
+//    return bonus;
+//}
 
-                //public bool GetRandomBonusKino()
-                //{
-                //    Console.WriteLine("Would you like to play KINO Bonus for your Automatic Players? (0:No, 1:Yes)");
-                //    try { bonus = bool.Parse(Console.ReadLine()); } catch { Console.Write("You didn't enter a Number. Please try again! "); Console.WriteLine("Please enter a valid Number:(0/1), 0:No Bonus, 1:Yes: (Play Bonus):"); }
-                //    return bonus;
-                //}
-                //public Ticket[] GetTickets(List<Player> PlayersL, int noTickets)
+//public bool GetRandomBonusKino()
+//{
+//    Console.WriteLine("Would you like to play KINO Bonus for your Automatic Players? (0:No, 1:Yes)");
+//    try { bonus = bool.Parse(Console.ReadLine()); } catch { Console.Write("You didn't enter a Number. Please try again! "); Console.WriteLine("Please enter a valid Number:(0/1), 0:No Bonus, 1:Yes: (Play Bonus):"); }
+//    return bonus;
+//}
+//public Ticket[] GetTickets(List<Player> PlayersL, int noTickets)
 
-                // public Ticket[] GetTickets(List<Player> PlayersL, int noTickets)
+// public Ticket[] GetTickets(List<Player> PlayersL, int noTickets)
 //                {
 //                    Ticket[] nATicket = new Ticket[noTickets - 1];
 //int z = 0;
@@ -319,6 +319,156 @@
 //                    return nATicket;
 //                }
 
+
+///////***************************************************************************************************************************************
+//void CreateNumbersTable()
+//{
+
+
+//    for (int j = 1; j <= 80; j++)
+//    {
+//        if (j < 10)
+//        {
+//            Console.Write("  {0}  ", j);
+//        }
+//        else if (j % 10 == 0)
+//        {
+//            Console.Write("  {0}  ", j);
+//            Console.WriteLine();
+//        }
+//        else
+//        {
+//            Console.Write("  {0}  ", j);
+//        }
+//    }
+//}
+
+/////***************************************************************************************************************************************
+////print 80numbers list for the user as a table in console
+////foreach (int i in list80Kino)
+////  {
+/////***************************************************************************************************************************************
+//for (int j = 1; j <= 80; j++)
+//{
+//    if (j < 10)
+//    {
+//        Console.Write("  {0}  ", j);
+//    }
+//    else if (j % 10 == 0)
+//    {
+//        Console.Write("  {0}  ", j);
+//        Console.WriteLine();
+//    }
+//    else
+//    {
+//        Console.Write("  {0}  ", j);
+//    }
+//}
+/////***************************************************************************************************************************************
+
+////Πόσοι παίκτες θα παίξουν ΚΙΝΟ?
+//Console.WriteLine("Enter players to play");
+//    int playersToPlay = int.Parse(Console.ReadLine());
+
+//    //initialiaze την λίστα των players
+//    List<Player> somePlayers = new List<Player>();
+
+//    //initialize την λίστα των 6 Numbers, των Players, του Dictionary
+//    List<int> playerSixNumbersList = new List<int>();
+//    List<Player> newPlayersList = new List<Player>();
+
+//    Dictionary<List<Player>, List<int>> PlayerSixNumbersPair = new Dictionary<List<Player>, List<int>>();
+
+
+//    // για όσους Players εβαλε ο χρήστης, τόσες φορές δημιουργησε μία λίστα για 6 Numbers για κάθε Player
+//    for (int i = 0; i < playersToPlay; i++)
+//    {
+//        playerSixNumbersList = Player.CreateSixNumbersList();
+
+//        //γέμισμα της λίστας των Players
+//        somePlayers = Player.GetPlayers();
+
+//        //εκτύπωση της λίστας των 6
+//        foreach (int num in playerSixNumbersList)
+//        {
+//            Console.WriteLine(num);
+//        }
+//        //εκτύπωση της λίστας των Players
+//        foreach (Player player in somePlayers)
+//        {
+//            Console.WriteLine($"Player ID: {player.ID}");
+//            Console.WriteLine($"Player ToString : {player.ToString()}");
+//        }
+
+//        //// The Add method throws an exception if the new key is 
+//        //// already in the dictionary.
+//        //try
+//        //{
+//        //    openWith.Add("txt", "winword.exe");
+//        //}
+//        //catch (ArgumentException)
+//        //{
+//        //    Console.WriteLine("An element with Key = \"txt\" already exists.");
+//        //}
+
+
+
+//        //γέμισμα του Dictionary με PlayersList και NumbersList
+//        PlayerSixNumbersPair.Add(somePlayers, playerSixNumbersList);
+//    }
+
+//    //Print each pair of Key-Value from Dictionary PlayerSixNumbersPair
+//    foreach (KeyValuePair<List<Player>, List<int>> pl in PlayerSixNumbersPair)
+//    {
+//        Console.WriteLine();
+//        for (int j = 0; j < pl.Key.Count; j++)
+//        {
+//            Console.WriteLine($"Pair here: {pl.Key[j]}");
+//            for (int i = 0; i < pl.Value.Count; i++)
+//            {
+
+//                Console.WriteLine($"Pair Value: {pl.Value[i]}");
+//            }
+//        }
+//    }
+
+//public Ticket[] GetTickets(List<Player> PlayersL, int noTickets)
+//{
+//    Ticket[] nATicket = new Ticket[noTickets - 1];
+//    int z = 0;
+
+//    foreach (Player p in PlayersL)
+//    {
+//        //KinoGame kino = new KinoGame();
+//        for (z = 1; z <= p.noTickets; z++)
+//        {
+//            var ticket = new Ticket(Increment(XxID), p);
+//            nATicket[z] = ticket;
+//        }
+//    }
+//    return nATicket;
+//}
+
+//public Dictionary<List<Player>, Ticket[]> CreatePlayersTicketsPair(List<Player> PlayersL, int noTickets)
+//{
+//    ////για όσους Players εβαλε ο χρήστης, τόσες φορές σύνδεσε ένα array με τα Tickets που έπαιξαν
+//    for (int i = 0; i < PlayersL.Count; i++)
+//    {
+//        Ticket[] stg = GetTickets(PlayersL, 1);
+//        playersTicketsPair.Add(PlayersL, stg);   //γέμισμα του Dictionary με PlayersList και NumbersList
+//    }
+//    return playersTicketsPair;
+//}//end CreatePlayersTicketsPair
+//public void PrintSixNumbersList(List<int> alist)
+//{
+//    Console.WriteLine("Player has chosen the following Numbers:");
+//    foreach (int i in alist)                       //εκτύπωση της λίστας των 6 αριθμών
+//    {
+//        Console.Write($"   {i},");
+//    }
+//    //    Console.WriteLine();
+//    //    Console.WriteLine($"KI NO BONUS:   {bonusNumber}");
+//}
 
 
 //    }

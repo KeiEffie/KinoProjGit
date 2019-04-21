@@ -23,3 +23,6 @@ C:\Users\lenovo\OneDrive\C_repos\_KinoProject\KinoProjGit2\KinoProject\obj\Debug
 C:\Users\lenovo\OneDrive\C_repos\_KinoProject\KinoProjGit2\KinoProject\obj\Debug\KinoProject.csproj.CoreCompileInputs.cache
 C:\Users\lenovo\OneDrive\C_repos\_KinoProject\KinoProjGit2\KinoProject\obj\Debug\KinoProject.exe
 C:\Users\lenovo\OneDrive\C_repos\_KinoProject\KinoProjGit2\KinoProject\obj\Debug\KinoProject.pdb
+C:\Users\lenovo\OneDrive\C_repos\_KinoProject\KinoProjGit2\KinoProject\bin\Debug\KinoProject.exe.config
+C:\Users\lenovo\OneDrive\C_repos\_KinoProject\KinoProjGit2\KinoProject\bin\Debug\KinoProject.exe
+C:\Users\lenovo\OneDrive\C_repos\_KinoProject\KinoProjGit2\KinoProject\bin\Debug\KinoProject.pdb

@@ -27,22 +27,27 @@ namespace KinoProject
         //Manual or Random create Kino Numbers List
         public bool ChooseManualRandom()
         {
+            
             Console.WriteLine("Would you like to choose Kino numbers");
             Console.WriteLine("Or let the Kino System choose 6 Numbers from 1 to 80  Randomly for you");
-            Console.Write("To input Randomly Press 0 \t"); Console.WriteLine("To input Manually Press 1");
+            Console.Write("Press M for Manual \t"); Console.WriteLine("Press R for Random (M/R): ");
 
             try
             {
-                isManual = Convert.ToBoolean(Console.ReadLine());
+                var ans = Console.ReadLine().ToUpper();
+
+
+                if (ans == "M")
+                { isManual = true; }
+                else
+                { isManual = false; }
             }
             catch
             {
-                Console.Write("You didn't enter a 0 or 1 choice. Please try again! ");
-                Console.WriteLine("Manually choose 6 Numbers OR Randomly? (0/1): ");
+                Console.Write("You didn't enter an R or M choice. Please try again! ");
+                Console.WriteLine("Manually choose 6 Numbers OR Randomly? (M/R): ");
             }
-
-            Console.WriteLine($"Your Choice is: {isManual}, ie {Convert.ToInt32(isManual)}");
-
+            Console.WriteLine("Your Choice is: {0}", (isManual ? "Manual" : "Randon"));
             return isManual;
         }//end Manual OR Random
 
@@ -69,9 +74,20 @@ namespace KinoProject
             {
                 KinoNumbersList = CreateRandomKINONumbersList(noKino);
             }
+            //SortKinoNumbersList();
           return KinoNumbersList;
         }
+        // sort the list but keep last the probable Kino Bonus 
+        public List<int> SortKinoNumbersList()
+        {
 
+            var temp = KinoNumbersList.Last();
+            KinoNumbersList.Sort();
+            KinoNumbersList.Remove(temp);
+            KinoNumbersList.Add(temp);
+
+            return KinoNumbersList;
+        }
         // Δημιουργία μιας λίστας με KINO numbers - Manually 
         private List<int> CreateManualKINONumbersList(int noKino)
         {
@@ -113,7 +129,7 @@ namespace KinoProject
             Random random = new Random();
             int randomNumber = (random.Next(1, 80));
 
-            for (int j = 0; j < KinoNumbersList.Capacity; j++)
+            for (int j = 0; j < noKino; j++)
             {
                 if (!KinoNumbersList.Contains(randomNumber))
                 {

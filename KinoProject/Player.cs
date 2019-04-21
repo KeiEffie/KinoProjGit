@@ -9,8 +9,6 @@ namespace KinoProject
     class Player
     {
         public int ID;
-        private string name;
-        public string Name { get; set; }
         public int noTickets;
         public List<Ticket> TicketsPlayList;
 
@@ -18,14 +16,13 @@ namespace KinoProject
         public Player(int id, List<Ticket> ticketsPlayList)
         {
             ID = id;
-            Name = name;
             TicketsPlayList = ticketsPlayList;
             noTickets = TicketsPlayList.Count;
         }
 
         public override string ToString()
         {
-            return "Player ID:" + ID + " " + Name + "TicketsPlayed" + noTickets;
+            return "Player ID:" + ID + " " +  "TicketsPlayed" + noTickets;
         }
 
 

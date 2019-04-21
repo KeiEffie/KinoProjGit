@@ -29,33 +29,31 @@ namespace KinoProject
             WonNumbers = new List<int>();
             ResultsL = new List<Results>();
         }
-        public void CreateNumbersTable()
-        {
-
-
-            for (int j = 1; j <= 80; j++)
-            {
-                if (j < 10)
-                {
-                    Console.Write("  {0}  ", j);
-                }
-                else if (j % 10 == 0)
-                {
-                    Console.Write("  {0}  ", j);
-                    Console.WriteLine();
-                }
-                else
-                {
-                    Console.Write("  {0}  ", j);
-                }
-            }
-        }
-
+        
+     // a general ID for any object
     public int Increment(int xID)
         {
             return XxID += 1;
         }
-        //χρειαζεται να γράψω κάποιο κώδικα για tickets, για να ρωτάω πόσα tickets θα παίξει ο/οι players και να τα βάλω στην μεταβλητή noTickets
+
+        //a Play KINO Method
+        public void PlayKino()
+        {
+            int noTickets = GetnoTickets();
+            int noPlayers = GetnoPlayers();
+            PlayersL = GetPlayersList(noTickets, noPlayers);
+            //TicketL.Add(PlayersL.ForEach(p=>p.TicketsPlayList);
+            //OR ????
+            foreach (Player p in PlayersL)
+            {
+                foreach (Ticket t in p.TicketsPlayList)
+                {
+                    TicketL.Add(t);         //ADD PLAYED TICKETS TO LOTTERY TICKETS LIST
+                }
+            }
+        }
+
+        //how many tickets will be played by each player
         public int GetnoTickets()
         {
             int noTickets = 0;
@@ -63,6 +61,8 @@ namespace KinoProject
             try { noTickets = int.Parse(Console.ReadLine()); } catch { Console.Write("You didn't enter a Number. Please try again! "); Console.WriteLine("Please enter a valid Number (min 1 - max 3):"); }
             return noTickets;
         }
+       
+    // How many players will play
         public int GetnoPlayers()
         {
             int noPlayers = 0;
@@ -71,63 +71,32 @@ namespace KinoProject
             return noPlayers;
         }
 
-        // Create Player(s)---with one or more than one tickets
+        // Create Player(s) List ---with one or more than one tickets
         public List<Player> GetPlayersList(int noTickets, int noPlayers)
         {
+            List<Player> tempPlayersList = new List<Player>();
             while (noPlayers != 0)
             {
                 Player player = new Player(Increment(XxID), GetTicketsList(noTickets));
-                PlayersL.Add(player);
+                tempPlayersList.Add(player);
                 noPlayers--;
             }
-            //while (noTickets !=0)
-            //    {
-            //        Player player = new Player(Increment(XxID), noTickets);
-            //        PlayersL.Add(player);
-            //        noTickets--;
-            //    }
-            return PlayersL;
+            return tempPlayersList;
         }
 
-        //Create Ticket(s)
+        //Create Ticket(s) List
         private List<Ticket> GetTicketsList (int noTickets)
         {
-            var kino = new KinoGame();
-            foreach (Player p in PlayersL)
+            List<Ticket> tempTicketList = new List<Ticket>();
+            for (int j = 0; j < noTickets; j++)
             {
-                var ticket = new Ticket(Increment(XxID), p);
-                TicketL.Add(ticket);
+                var ticket = new Ticket(Increment(XxID));
+                tempTicketList.Add(ticket);
+                //TicketL.Add(ticket);
             }
-            return TicketL;
+
+            return tempTicketList;
         }
-
-        //public Ticket[] GetTickets(List<Player> PlayersL, int noTickets)
-        //{
-        //    Ticket[] nATicket = new Ticket[noTickets - 1];
-        //    int z = 0;
-
-        //    foreach (Player p in PlayersL)
-        //    {
-        //        //KinoGame kino = new KinoGame();
-        //        for (z = 1; z <= p.noTickets; z++)
-        //        {
-        //            var ticket = new Ticket(Increment(XxID), p);
-        //            nATicket[z] = ticket;
-        //        }
-        //    }
-        //    return nATicket;
-        //}
-
-        //public Dictionary<List<Player>, Ticket[]> CreatePlayersTicketsPair(List<Player> PlayersL, int noTickets)
-        //{
-        //    ////για όσους Players εβαλε ο χρήστης, τόσες φορές σύνδεσε ένα array με τα Tickets που έπαιξαν
-        //    for (int i = 0; i < PlayersL.Count; i++)
-        //    {
-        //        Ticket[] stg = GetTickets(PlayersL, 1);
-        //        playersTicketsPair.Add(PlayersL, stg);   //γέμισμα του Dictionary με PlayersList και NumbersList
-        //    }
-        //    return playersTicketsPair;
-        //}//end CreatePlayersTicketsPair
 
 
          //ΈΛΕΓΧΟΣ ΓΙΑ BONUS - ΕΚΤΥΠΩΣΗ ΚΑΤΗΓΟΡΙΑΣ ΑΠΟΤΕΛΕΣΜΑΤΩΝ - ΓΙΑ ΚΑΘΕ TICKET
@@ -151,24 +120,31 @@ namespace KinoProject
             }
 
         }
-        public void PrintSixNumbersList(List<int> alist)
-        {
-            Console.WriteLine("Player has chosen the following Numbers:");
-            foreach (int i in alist)                       //εκτύπωση της λίστας των 6 αριθμών
-            {
-                Console.Write($"   {i},");
-            }
-            //    Console.WriteLine();
-            //    Console.WriteLine($"KI NO BONUS:   {bonusNumber}");
-        }
 
-        public void PrintPlayersList()
+
+        public void PrintPlayersListDetails()
         {
+
             Console.WriteLine("Players:");
             foreach (Player p in PlayersL)                   //εκτύπωση της λίστας των Players
             {
-                Console.WriteLine($"Player ID: {p.ID}");
+                Console.WriteLine($"Player ID: {p.ID}, played {p.noTickets} Ticket(s) with:");
+                foreach(Ticket t in p.TicketsPlayList)                    //εκτύπωση της λίστας των Tickets του κάθε Player
+                {
+                    string KinoNumsOnTicket = String.Join(", ", t.NumbersPlayedL.Select(i => i.ToString()));
+                    Console.WriteLine("Ticket ID: {0} with KINO Numbers:{1} ,  {2}:{3}  ", t.ID,  KinoNumsOnTicket,   (t.bonus? "with Kino Bonus":""), t.NumbersPlayedL.Last());
+
+                    //Console.WriteLine(String.Join(", ", t.NumbersPlayedL.Select(i => i.ToString())));
+                    // OR THE FOLLOWING:!!!!!!!!!!!!!!
+                    //for (int i=0; i < t.NumbersPlayedL.Count; i++)
+                    //{
+                    //    Console.Write(t.NumbersPlayedL[i] + ",, ");
+                    //}
+                }
             }
         }
-    }
+
+
+
+    }//end lottery
 }
