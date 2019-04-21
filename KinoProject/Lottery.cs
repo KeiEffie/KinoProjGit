@@ -15,7 +15,7 @@ namespace KinoProject
         public List<Ticket> TicketL;
         public List<Player> PlayersL;
         public List<Results> ResultsL;
-        Dictionary<List<Player>, Ticket[]> playersTicketsPair;
+        //Dictionary<List<Player>, Ticket[]> playersTicketsPair;
         //public int noPlayers;
 
         public List<int> WonNumbers { get; set; }
@@ -29,13 +29,29 @@ namespace KinoProject
             WonNumbers = new List<int>();
             ResultsL = new List<Results>();
         }
-
-        public Lottery()
+        public void CreateNumbersTable()
         {
-            throw new System.NotImplementedException();
+
+
+            for (int j = 1; j <= 80; j++)
+            {
+                if (j < 10)
+                {
+                    Console.Write("  {0}  ", j);
+                }
+                else if (j % 10 == 0)
+                {
+                    Console.Write("  {0}  ", j);
+                    Console.WriteLine();
+                }
+                else
+                {
+                    Console.Write("  {0}  ", j);
+                }
+            }
         }
 
-        public int Increment(int xID)
+    public int Increment(int xID)
         {
             return XxID += 1;
         }
@@ -102,16 +118,16 @@ namespace KinoProject
         //    return nATicket;
         //}
 
-        public Dictionary<List<Player>, Ticket[]> CreatePlayersTicketsPair(List<Player> PlayersL, int noTickets)
-        {
-            ////για όσους Players εβαλε ο χρήστης, τόσες φορές σύνδεσε ένα array με τα Tickets που έπαιξαν
-            for (int i = 0; i < PlayersL.Count; i++)
-            {
-                Ticket[] stg = GetTickets(PlayersL, 1);
-                playersTicketsPair.Add(PlayersL, stg);   //γέμισμα του Dictionary με PlayersList και NumbersList
-            }
-            return playersTicketsPair;
-        }//end CreatePlayersTicketsPair
+        //public Dictionary<List<Player>, Ticket[]> CreatePlayersTicketsPair(List<Player> PlayersL, int noTickets)
+        //{
+        //    ////για όσους Players εβαλε ο χρήστης, τόσες φορές σύνδεσε ένα array με τα Tickets που έπαιξαν
+        //    for (int i = 0; i < PlayersL.Count; i++)
+        //    {
+        //        Ticket[] stg = GetTickets(PlayersL, 1);
+        //        playersTicketsPair.Add(PlayersL, stg);   //γέμισμα του Dictionary με PlayersList και NumbersList
+        //    }
+        //    return playersTicketsPair;
+        //}//end CreatePlayersTicketsPair
 
 
          //ΈΛΕΓΧΟΣ ΓΙΑ BONUS - ΕΚΤΥΠΩΣΗ ΚΑΤΗΓΟΡΙΑΣ ΑΠΟΤΕΛΕΣΜΑΤΩΝ - ΓΙΑ ΚΑΘΕ TICKET
