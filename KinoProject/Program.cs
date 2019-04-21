@@ -39,8 +39,8 @@ namespace KinoProject
                     case 2:
                         CreateNumbersTable();
                         int noTickets=lottery.GetnoTickets();
-                        lottery.GetPlayersList(noTickets);
-                        lottery.GetTickets(noTickets);
+                        int noPlayers = lottery.GetnoPlayers();
+                        List<Player> PlayerList= lottery.GetPlayersList(noTickets, noPlayers);
                         break;
                     case 3:
                         double drawAmount = 0;

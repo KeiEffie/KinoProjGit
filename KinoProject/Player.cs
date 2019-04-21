@@ -11,13 +11,16 @@ namespace KinoProject
         public int ID;
         private string name;
         public string Name { get; set; }
-        public int noTickets; 
+        public int noTickets;
+        public List<Ticket> TicketsPlayList;
 
-        public Player(int id, int noTickets)
+
+        public Player(int id, List<Ticket> ticketsPlayList)
         {
             ID = id;
             Name = name;
-            noTickets = 1;
+            TicketsPlayList = ticketsPlayList;
+            noTickets = TicketsPlayList.Count;
         }
 
         public override string ToString()

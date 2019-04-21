@@ -16,7 +16,8 @@ namespace KinoProject
         public List<Player> PlayersL;
         public List<Results> ResultsL;
         Dictionary<List<Player>, Ticket[]> playersTicketsPair;
-         
+        //public int noPlayers;
+
         public List<int> WonNumbers { get; set; }
         public int XxID { get; set; }
 
@@ -29,6 +30,11 @@ namespace KinoProject
             ResultsL = new List<Results>();
         }
 
+        public Lottery()
+        {
+            throw new System.NotImplementedException();
+        }
+
         public int Increment(int xID)
         {
             return XxID += 1;
@@ -37,25 +43,38 @@ namespace KinoProject
         public int GetnoTickets()
         {
             int noTickets = 0;
-            Console.WriteLine("How many Tickets would you like to play? (min 1 - max 3)");
+            Console.WriteLine("How many Tickets would you like to play for each player? (min 1 - max 3)");
             try { noTickets = int.Parse(Console.ReadLine()); } catch { Console.Write("You didn't enter a Number. Please try again! "); Console.WriteLine("Please enter a valid Number (min 1 - max 3):"); }
             return noTickets;
         }
+        public int GetnoPlayers()
+        {
+            int noPlayers = 0;
+            Console.WriteLine("How many Players would like to play? (min 1 - max 5)");
+            try { noPlayers = int.Parse(Console.ReadLine()); } catch { Console.Write("You didn't enter a Number. Please try again! "); Console.WriteLine("Please enter a valid Number (min 1 - max 5):"); }
+            return noPlayers;
+        }
 
         // Create Player(s)---with one or more than one tickets
-        public List<Player> GetPlayersList(int noTickets)
+        public List<Player> GetPlayersList(int noTickets, int noPlayers)
         {
-                while(noTickets !=0)
-                {
-                    Player player = new Player(Increment(XxID), noTickets);
-                    PlayersL.Add(player);
-                    noTickets--;
-                }
+            while (noPlayers != 0)
+            {
+                Player player = new Player(Increment(XxID), GetTicketsList(noTickets));
+                PlayersL.Add(player);
+                noPlayers--;
+            }
+            //while (noTickets !=0)
+            //    {
+            //        Player player = new Player(Increment(XxID), noTickets);
+            //        PlayersL.Add(player);
+            //        noTickets--;
+            //    }
             return PlayersL;
         }
 
         //Create Ticket(s)
-        public List<Ticket> GetTickets(int noTickets)
+        private List<Ticket> GetTicketsList (int noTickets)
         {
             var kino = new KinoGame();
             foreach (Player p in PlayersL)
@@ -66,22 +85,22 @@ namespace KinoProject
             return TicketL;
         }
 
-        public Ticket[] GetTickets(List<Player> PlayersL, int noTickets)
-                {
-                    Ticket[] nATicket = new Ticket[noTickets - 1];
-                    int z = 0;
+        //public Ticket[] GetTickets(List<Player> PlayersL, int noTickets)
+        //{
+        //    Ticket[] nATicket = new Ticket[noTickets - 1];
+        //    int z = 0;
 
-                    foreach (Player p in PlayersL)
-                    {
-                        var kino = new KinoGame();
-                        for (z = 1; z <= p.noTickets; z++)
-                        {
-                            var ticket = new Ticket(Increment(XxID), p);
-                            nATicket[z] = ticket;
-                        }
-}
-                    return nATicket;
-        }
+        //    foreach (Player p in PlayersL)
+        //    {
+        //        //KinoGame kino = new KinoGame();
+        //        for (z = 1; z <= p.noTickets; z++)
+        //        {
+        //            var ticket = new Ticket(Increment(XxID), p);
+        //            nATicket[z] = ticket;
+        //        }
+        //    }
+        //    return nATicket;
+        //}
 
         public Dictionary<List<Player>, Ticket[]> CreatePlayersTicketsPair(List<Player> PlayersL, int noTickets)
         {

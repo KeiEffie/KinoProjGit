@@ -44,7 +44,6 @@ namespace KinoProject
         }
         public override string ToString()
         {
-
             return "Draw ID:" + ID + " BonusNumber: " + BonusNumber + " Draw Amount: " + DrawAmount + " Winning KINO Numbers are:" + string.Join(",", WinnerList.ToArray());
         }
 
