@@ -99,7 +99,7 @@ namespace KinoProject
             return tempTicketList;
         }
 
-        public void GetResults()   /// thelei douleiaaaaa
+        public void GetResultsList()   /// thelei douleiaaaaa
         {
             Results results = new Results();
             foreach (Ticket t in TicketL)
@@ -108,6 +108,33 @@ namespace KinoProject
                 {
                     var resultList = results.GetResultList(d.WinnerList, t.NumbersPlayedL);
                     PrintCategory(results, d, t);
+                }
+            }
+        }
+         public void GetResults()   /// thelei douleiaaaaa
+        {
+          
+            Results results = new Results();
+            List<int> resultList =new List<int>();
+            foreach (Draw d in DrawL)
+            {
+              // Console.WriteLine(t.ToString());
+               foreach (Ticket t in TicketL)
+                {
+                  // Console.WriteLine(d.ToString());
+
+                     resultList = results.GetResultList(d.WinnerList, t.NumbersPlayedL);
+                    Console.WriteLine("Inside");
+                    Console.WriteLine(String.Join(", ",  resultList.Select(i => i.ToString())));
+namespace                    Console.WriteLine($"Category Winners :{categW}");
+                    var catRate = results.GetCategoryRate(categW);
+                    Console.WriteLine($"Category Rate :{catRate}");
+                    // Console.WriteLine("Inside");
+                    // Console.WriteLine(String.Join(", ", t.NumbersPlayedL.Select(i => i.ToString())));
+                    // Console.WriteLine(String.Join(", ", d.WinnerList.Select(i => i.ToString())));
+                    PrintCategory(results, d, t);
+                    Console.WriteLine("After");
+                    PrintPlayersListDetails();
                 }
             }
         }
